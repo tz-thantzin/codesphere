@@ -1,0 +1,15 @@
+const double s10 = 10;
+const double s14 = 14;
+const double s16 = 16;
+const double s20 = 20;
+const double s24 = 24;
+const double s28 = 28;
+const double s36 = 36;
+const double s42 = 42;
+const double s48 = 48;
+const double s60 = 60;
+const double s64 = 64;
+const double s70 = 70;
+const double s80 = 80;
+const double s96 = 96;
+const double s100 = 100;
