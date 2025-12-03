@@ -93,6 +93,71 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @we_build_exceptional.
+  ///
+  /// In en, this message translates to:
+  /// **'We Build Exceptional\nMobile Experiences'**
+  String get we_build_exceptional;
+
+  /// No description provided for @premium_android_ios_studio.
+  ///
+  /// In en, this message translates to:
+  /// **'CodeSphere – Premium Android & iOS Development Studio'**
+  String get premium_android_ios_studio;
+
+  /// No description provided for @view_our_work.
+  ///
+  /// In en, this message translates to:
+  /// **'View Our Work'**
+  String get view_our_work;
+
+  /// No description provided for @get_free_quote.
+  ///
+  /// In en, this message translates to:
+  /// **'Get a Free Quote'**
+  String get get_free_quote;
+
+  /// No description provided for @crafting_mobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Crafting the Future of Mobile,\nOne App at a Time'**
+  String get crafting_mobile;
+
+  /// No description provided for @about_codesphere_description.
+  ///
+  /// In en, this message translates to:
+  /// **'At CodeSphere, we don’t just build apps — we architect digital experiences\nthat scale, perform, and delight. With experience in Flutter, Swift, Kotlin\n and modern UI engineering, we deliver reliable and beautiful solutions.'**
+  String get about_codesphere_description;
+
+  /// No description provided for @what_we_build.
+  ///
+  /// In en, this message translates to:
+  /// **'What We Build'**
+  String get what_we_build;
+
+  /// No description provided for @codesphere.
+  ///
+  /// In en, this message translates to:
+  /// **'CodeSphere'**
+  String get codesphere;
+
+  /// No description provided for @footer_copyright.
+  ///
+  /// In en, this message translates to:
+  /// **'© 2025 CodeSphere.'**
+  String get footer_copyright;
+
+  /// No description provided for @footer_rights_reserved.
+  ///
+  /// In en, this message translates to:
+  /// **'All rights reserved.'**
+  String get footer_rights_reserved;
+
+  /// No description provided for @footer_tagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Crafting exceptional mobile experiences.'**
+  String get footer_tagline;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

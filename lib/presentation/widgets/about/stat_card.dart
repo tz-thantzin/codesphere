@@ -22,11 +22,11 @@ class StatCard extends StatelessWidget {
               final double width = constraints.maxWidth;
               final double height = constraints.maxHeight;
 
-              final double numberFontSize = width * 0.38;
-              final double labelFontSize = width * 0.20;
+              final double numberFontSize = width * 0.28;
+              final double labelFontSize = width * 0.05;
 
               final double verticalPadding =
-                  height * (context.isMobile ? 0.18 : 0.28);
+                  height * (context.isMobile ? 0.18 : 0.21);
 
               return Padding(
                 padding: EdgeInsets.symmetric(
@@ -103,8 +103,8 @@ class HugeAnimatedNumber extends StatelessWidget {
           style: TextStyle(
             fontSize: fontSize,
             fontWeight: superBold,
-            height: 0.9,
-            letterSpacing: -2.5,
+            height: 1.2,
+            letterSpacing: 1,
             foreground: Paint()
               ..shader = const LinearGradient(
                 colors: [kAccentCyan, kPurpleGlow],
@@ -133,7 +133,7 @@ class HugeStaticNumber extends StatelessWidget {
       style: TextStyle(
         fontSize: fontSize,
         fontWeight: FontWeight.w900,
-        height: 0.9,
+        height: 1.2,
         letterSpacing: -1.5,
         foreground: Paint()
           ..shader = const LinearGradient(
@@ -152,19 +152,16 @@ class HugeLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FittedBox(
-      fit: BoxFit.contain,
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        maxLines: 3,
-        style: TextStyle(
-          fontSize: fontSize,
-          fontWeight: FontWeight.w700,
-          color: kWhite70,
-          height: 1.25,
-          letterSpacing: 1.0,
-        ),
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      maxLines: 3,
+      style: TextStyle(
+        fontSize: fontSize,
+        fontWeight: FontWeight.w700,
+        color: kWhite70,
+        height: 1.25,
+        letterSpacing: 1.0,
       ),
     );
   }

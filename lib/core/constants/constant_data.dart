@@ -39,7 +39,7 @@ final List<Map<String, dynamic>> serviceData = [
     'title': 'Real Estate Platforms',
     'description':
         'Mapping, and secure transaction handling for property tech.',
-    'icon': Icons.location_on,
+    'icon': Icons.home,
   },
   {
     'title': 'Custom Feature Development',
@@ -62,10 +62,10 @@ final List<Map<String, dynamic>> serviceData = [
 ];
 
 const List<Stat> stats = [
-  Stat("12+", "Years of\nExperience"),
-  Stat("50+", "Completed\nProjects"),
-  Stat("100%", "Client\nCommitment"),
-  Stat("Agile", "Fast\nDelivery", isNumeric: false),
+  Stat("12+", "Years of Experience"),
+  Stat("50+", "Completed Projects"),
+  Stat("100%", "Client Commitment"),
+  Stat("Agile", "Fast Delivery", isNumeric: false),
 ];
 
 const List<SocialLink> socialLinks = [

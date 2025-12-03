@@ -79,8 +79,8 @@ class _Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ShaderMask(
     shaderCallback: (bounds) => kButtonGradient.createShader(bounds),
-    child: const SelectableText(
-      "CodeSphere",
+    child: SelectableText(
+      context.localization.codesphere,
       style: TextStyle(
         fontSize: 34,
         fontWeight: superBold,
@@ -97,16 +97,16 @@ class _Copyright extends StatelessWidget {
   Widget build(BuildContext context) => SelectableText.rich(
     textAlign: TextAlign.center,
     TextSpan(
-      text: "© 2025 CodeSphere. ",
+      text: "${context.localization.footer_copyright} ",
       style: TextStyle(fontSize: 15, color: kTextSecondary, height: 1.7),
-      children: const [
+      children: [
         TextSpan(
-          text: "All rights reserved.\n",
-          style: TextStyle(fontWeight: FontWeight.w600),
+          text: "${context.localization.footer_rights_reserved}\n",
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
         TextSpan(
-          text: "Crafting exceptional mobile experiences.",
-          style: TextStyle(fontStyle: FontStyle.italic),
+          text: context.localization.footer_tagline,
+          style: const TextStyle(fontStyle: FontStyle.italic),
         ),
       ],
     ),

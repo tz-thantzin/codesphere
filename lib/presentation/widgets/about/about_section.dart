@@ -39,7 +39,7 @@ class _AboutSectionState extends State<AboutSection> {
             },
             child:
                 SelectableText(
-                      "Crafting the Future of Mobile,\nOne App at a Time",
+                      context.localization.crafting_mobile,
                       style: context.displayMedium.copyWith(
                         fontSize: context.adaptive(36, 55),
                         height: 1.05,
@@ -69,9 +69,7 @@ class _AboutSectionState extends State<AboutSection> {
                         horizontal: context.adaptive(16, 80),
                       ),
                       child: SelectableText(
-                        "At CodeSphere, we don’t just build apps — we architect digital experiences "
-                        "that scale, perform, and delight. With experience in Flutter, Swift, Kotlin "
-                        "and modern UI engineering, we deliver reliable and beautiful solutions.",
+                        context.localization.about_codesphere_description,
                         style: context.bodyLarge.copyWith(
                           fontSize: context.adaptive(15, 19),
                           height: 1.75,

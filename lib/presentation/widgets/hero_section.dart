@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../core/constants/constant_colors.dart';
+import '../../core/utils/extensions/context_ex.dart';
 import '../../core/utils/extensions/layout_adapter_ex.dart';
 import '../../core/utils/extensions/theme_ex.dart';
 import '../../core/widgets/animated_fade_slide.dart';
@@ -35,7 +36,7 @@ class HeroSection extends StatelessWidget {
               delay: 100.ms,
               beginY: 0.4,
               child: SelectableText(
-                "We Build Exceptional\nMobile Experiences",
+                context.localization.we_build_exceptional,
                 style: context.displayLarge.copyWith(
                   fontSize: context.adaptive(36, 65),
                   height: 1.05,
@@ -54,7 +55,7 @@ class HeroSection extends StatelessWidget {
               delay: 500.ms,
               beginY: 0.25,
               child: SelectableText(
-                "CodeSphere – Premium Android & iOS Development Studio",
+                context.localization.premium_android_ios_studio,
                 style: context.titleMedium.copyWith(
                   fontSize: isMobile ? 18 : 22,
                   fontWeight: FontWeight.w500,
@@ -71,7 +72,7 @@ class HeroSection extends StatelessWidget {
               delay: 800.ms,
               beginY: 0.2,
               curve: Curves.easeOutBack,
-              child: _ResponsiveButtons(
+              child: _buildButtons(
                 onViewWork: onViewWork,
                 onGetQuote: onGetQuote,
                 isMobile: isMobile,
@@ -84,12 +85,12 @@ class HeroSection extends StatelessWidget {
   }
 }
 
-class _ResponsiveButtons extends StatelessWidget {
+class _buildButtons extends StatelessWidget {
   final VoidCallback onViewWork;
   final VoidCallback onGetQuote;
   final bool isMobile;
 
-  const _ResponsiveButtons({
+  const _buildButtons({
     required this.onViewWork,
     required this.onGetQuote,
     required this.isMobile,
@@ -103,7 +104,7 @@ class _ResponsiveButtons extends StatelessWidget {
       alignment: WrapAlignment.center,
       children: [
         GlowingButton(
-          text: "View Our Work",
+          text: context.localization.view_our_work,
           onPressed: onViewWork,
           padding: EdgeInsets.symmetric(
             horizontal: isMobile ? 28 : 36,
@@ -111,7 +112,7 @@ class _ResponsiveButtons extends StatelessWidget {
           ),
         ),
         GlowingButton(
-          text: "Get a Free Quote",
+          text: context.localization.get_free_quote,
           onPressed: onGetQuote,
           filled: true,
           padding: EdgeInsets.symmetric(

@@ -26,7 +26,7 @@ class ServicesSection extends StatelessWidget {
             delay: 300.ms,
             beginY: 0.4,
             child: SelectableText(
-              "What We Build",
+              context.localization.what_we_build,
               textAlign: TextAlign.center,
               style: context.displayMedium.copyWith(
                 fontSize: context.adaptive(36, 55),

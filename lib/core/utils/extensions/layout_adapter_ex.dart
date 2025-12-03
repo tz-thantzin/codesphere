@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:layout/layout.dart';
 
-extension LayoutAdapter on BuildContext {
-  double get screenHeight => MediaQuery.of(this).size.height;
-  double get screenWidth => MediaQuery.of(this).size.width;
+import 'context_ex.dart';
 
+extension LayoutAdapter on BuildContext {
   T adaptive<T>(T xs, T lg, {T? sm, T? md, T? xl}) {
     return layout.value<T>(
       xs: xs,
