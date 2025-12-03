@@ -1,6 +1,8 @@
+//lib/presentation/widgets/hero_section.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../core/constants/constant_colors.dart';
 import '../../core/utils/extensions/layout_adapter_ex.dart';
 import '../../core/utils/extensions/theme_ex.dart';
 import '../../core/widgets/animated_fade_slide.dart';
@@ -21,13 +23,13 @@ class HeroSection extends StatelessWidget {
     final bool isMobile = context.isMobile;
 
     return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: context.screenHeight),
+      constraints: BoxConstraints(minHeight: context.screenHeight * 0.95),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Headline – triggers on appear
+            // Headline
             AnimatedFadeSlide(
               visibilityKey: 'hero-headline',
               delay: 100.ms,
@@ -35,8 +37,10 @@ class HeroSection extends StatelessWidget {
               child: SelectableText(
                 "We Build Exceptional\nMobile Experiences",
                 style: context.displayLarge.copyWith(
-                  fontSize: isMobile ? 56 : 84,
-                  height: 1.1,
+                  fontSize: context.adaptive(36, 65),
+                  height: 1.05,
+                  fontWeight: superBold,
+                  color: kWhite,
                 ),
                 textAlign: TextAlign.center,
               ),

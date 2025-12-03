@@ -1,10 +1,14 @@
+//lib/presentation/pages/landing_page.dart
 import 'dart:js_interop';
 
+import 'package:codesphere/core/constants/constant_images.dart';
+import 'package:codesphere/core/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:web/web.dart' as web;
 
 import '../../core/constants/constants.dart';
+import '../../core/services/analytics_service.dart';
 import '../../core/widgets/animated_background.dart';
 import '../widgets/about/about_section.dart';
 import '../widgets/contact/contact_section.dart';
@@ -28,6 +32,8 @@ class _LandingPageState extends State<LandingPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkHash();
       web.window.addEventListener('hashchange', _handleHashChange.toJS);
+
+      AnalyticsService().logAppOpen();
     });
   }
 
@@ -62,22 +68,7 @@ class _LandingPageState extends State<LandingPage> {
       body: Stack(
         children: [
           const AnimatedBackground(),
-          Positioned(
-            top: 0,
-            left: 0,
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40,
-                  vertical: 28,
-                ),
-                child: Image.asset(
-                  'assets/logos/codesphere_logo_text.png',
-                  height: 40,
-                ),
-              ),
-            ),
-          ),
+
           SingleChildScrollView(
             controller: _scrollController,
             physics: const BouncingScrollPhysics(),
@@ -91,9 +82,27 @@ class _LandingPageState extends State<LandingPage> {
                 AboutSection(key: aboutSectionKey),
                 ServicesSection(key: servicesSectionKey),
                 ContactSection(key: contactSectionKey),
-                const SizedBox(height: 120),
                 const Footer(),
               ],
+            ),
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: context.isMobile ? 0 : null,
+            child: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.adaptive(24, 40),
+                  vertical: context.adaptive(20, 28),
+                ),
+                child: Image.asset(
+                  kLogoText,
+                  height: context.adaptive(32, 48),
+                  width: context.adaptive(120, 200),
+                  fit: BoxFit.contain,
+                ),
+              ),
             ),
           ),
         ],

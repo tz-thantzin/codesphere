@@ -1,3 +1,4 @@
+// lib/presentation/widgets/contact/contact_info.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,15 +6,16 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants/constant_colors.dart';
 import '../../../core/constants/constant_data.dart';
+import '../../../core/utils/extensions/extensions.dart';
 import '../../../core/widgets/animated_fade_slide.dart';
 
 class ContactInfo extends StatelessWidget {
-  const ContactInfo();
+  const ContactInfo({super.key});
 
   Future<void> _open(String url) async {
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
-      launchUrl(uri, mode: LaunchMode.externalApplication);
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
   }
 
@@ -21,38 +23,47 @@ class ContactInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedFadeSlide(
       visibilityKey: 'contact-info',
-      delay: 500.ms,
+      delay: 400.ms,
+      beginY: 0.3,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Title
           SelectableText(
             "Get in Touch",
             style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
+              fontSize: context.adaptive(28, 48, md: 36, xl: 56),
+              fontWeight: FontWeight.w800,
               color: kTextPrimary,
+              height: 1.2,
+              letterSpacing: -0.5,
             ),
           ),
-          const SizedBox(height: 32),
+
+          SizedBox(height: context.adaptive(32, 48, md: 40)),
+
+          // Contact Rows
           _ContactRow(
             icon: FontAwesomeIcons.envelope,
             text: kEmail,
+            color: kAccentCyan,
             onTap: () => _open("mailto:$kEmail"),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: context.adaptive(16, 24, md: 20)),
           _ContactRow(
             icon: FontAwesomeIcons.viber,
             text: kPhoneViber,
             color: kViber,
             onTap: () => _open("tel:$kPhoneViber"),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: context.adaptive(16, 24, md: 20)),
           _ContactRow(
             icon: FontAwesomeIcons.whatsapp,
             text: kPhoneWhatsApp,
             color: kWhatsApp,
-            onTap: () =>
-                _open("https://wa.me/${kPhoneWhatsApp.replaceAll('+', '')}"),
+            onTap: () => _open(
+              "https://wa.me/${kPhoneWhatsApp.replaceAll('+', '').replaceAll(' ', '')}",
+            ),
           ),
         ],
       ),
@@ -85,46 +96,79 @@ class _ContactRowState extends State<_ContactRow> {
     final accent = widget.color ?? kAccentCyan;
 
     return MouseRegion(
-      onEnter: (_) => setState(() => _hover = true),
-      onExit: (_) => setState(() => _hover = false),
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: AnimatedContainer(
-          duration: 300.ms,
-          curve: Curves.easeOutCubic,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          decoration: BoxDecoration(
-            color: _hover ? accent.withValues(alpha: 0.12) : kTransparent,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: _hover ? accent : kWhite24),
-          ),
-          child: Row(
-            children: [
-              FaIcon(
-                widget.icon,
-                size: 26,
-                color: _hover ? accent : kTextSecondary,
+          onEnter: (_) => setState(() => _hover = true),
+          onExit: (_) => setState(() => _hover = false),
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: widget.onTap,
+            child: AnimatedContainer(
+              duration: 350.ms,
+              curve: Curves.easeOutCubic,
+              padding: EdgeInsets.symmetric(
+                horizontal: context.adaptive(20, 32, md: 28, xl: 40),
+                vertical: context.adaptive(16, 20, md: 18, xl: 24),
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: SelectableText(
-                  widget.text,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: _hover ? kTextPrimary : kTextSecondary,
-                    fontWeight: _hover ? FontWeight.w600 : FontWeight.w500,
-                  ),
+              decoration: BoxDecoration(
+                color: _hover
+                    ? accent.withValues(alpha: 0.15)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(context.adaptive(16, 20)),
+                border: Border.all(
+                  color: _hover ? accent : kWhite24,
+                  width: _hover ? 1.5 : 1.0,
                 ),
+                boxShadow: _hover
+                    ? [
+                        BoxShadow(
+                          color: accent.withValues(alpha: 0.2),
+                          blurRadius: 20,
+                          offset: const Offset(0, 8),
+                        ),
+                      ]
+                    : null,
               ),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 16,
-                color: _hover ? accent : kTextSecondary.withValues(alpha: 0.6),
+              child: Row(
+                children: [
+                  // Icon
+                  FaIcon(
+                    widget.icon,
+                    size: context.adaptive(24, 32, md: 28, xl: 36),
+                    color: _hover ? accent : kTextSecondary,
+                  ),
+
+                  SizedBox(width: context.adaptive(16, 24, md: 20)),
+
+                  // Text
+                  Expanded(
+                    child: SelectableText(
+                      widget.text,
+                      style: TextStyle(
+                        fontSize: context.adaptive(15, 19, md: 17, xl: 21),
+                        color: _hover ? kTextPrimary : kTextSecondary,
+                        fontWeight: _hover ? FontWeight.w600 : FontWeight.w500,
+                        height: 1.4,
+                      ),
+                    ),
+                  ),
+
+                  // Arrow
+                  AnimatedRotation(
+                    turns: _hover ? 0.05 : 0,
+                    duration: 300.ms,
+                    child: Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: context.adaptive(16, 22, md: 18, xl: 24),
+                      color: _hover
+                          ? accent
+                          : kTextSecondary.withValues(alpha: 0.7),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+        )
+        .animate(target: _hover ? 1 : 0)
+        .scale(begin: const Offset(0.98, 0.98), curve: Curves.easeOutCubic);
   }
 }

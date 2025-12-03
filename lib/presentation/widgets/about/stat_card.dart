@@ -1,104 +1,179 @@
+// lib/presentation/widgets/about/stat_card.dart
 import 'package:codesphere/core/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../core/constants/constant_colors.dart';
 import '../../../core/widgets/glass_card.dart';
-import '../../../model/stat.dart';
+import '../../../models/stat.dart';
 
-class StatCard extends StatefulWidget {
+class StatCard extends StatelessWidget {
   final Stat stat;
   final Duration delay;
 
   const StatCard({super.key, required this.stat, this.delay = Duration.zero});
 
   @override
-  State<StatCard> createState() => _StatCardState();
+  Widget build(BuildContext context) {
+    return GlassCard(
+          padding: EdgeInsets.zero,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final double width = constraints.maxWidth;
+              final double height = constraints.maxHeight;
+
+              final double numberFontSize = width * 0.38;
+              final double labelFontSize = width * 0.20;
+
+              final double verticalPadding =
+                  height * (context.isMobile ? 0.18 : 0.28);
+
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: verticalPadding,
+                  horizontal: width * 0.05,
+                ),
+                child: Column(
+                  children: [
+                    // NUMBER (Animated or Static)
+                    Expanded(
+                      flex: 6,
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: stat.isNumeric
+                            ? HugeAnimatedNumber(
+                                value: _parseNumericValue(stat),
+                                stat: stat,
+                                fontSize: numberFontSize,
+                              )
+                            : HugeStaticNumber(
+                                text: stat.number,
+                                fontSize: numberFontSize,
+                              ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    // LABEL
+                    Expanded(
+                      flex: 4,
+                      child: HugeLabel(
+                        text: stat.label,
+                        fontSize: labelFontSize,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        )
+        .animate()
+        .fadeIn(duration: 800.ms, delay: delay)
+        .slideY(begin: 0.35, curve: Curves.easeOutCubic);
+  }
+
+  double _parseNumericValue(Stat stat) {
+    return double.tryParse(stat.number.replaceAll(RegExp(r'[^0-9]'), '')) ?? 0;
+  }
 }
 
-class _StatCardState extends State<StatCard> {
-  bool _isVisible = false;
+class HugeAnimatedNumber extends StatelessWidget {
+  final double value;
+  final Stat stat;
+  final double fontSize;
+
+  const HugeAnimatedNumber({
+    super.key,
+    required this.value,
+    required this.stat,
+    required this.fontSize,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final isSmallScreen = MediaQuery.sizeOf(context).width < 380;
-    final numericValue =
-        double.tryParse(widget.stat.number.replaceAll(RegExp(r'[^0-9]'), '')) ??
-        0;
-
-    return VisibilityDetector(
-      key: Key('stat-${widget.stat.label}'),
-      onVisibilityChanged: (info) {
-        if (!_isVisible && info.visibleFraction > 0.3) {
-          setState(() => _isVisible = true);
-        }
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0.0, end: value),
+      duration: 2400.ms,
+      curve: Curves.easeOutExpo,
+      builder: (context, val, _) {
+        return Text(
+          _formatNumber(val.toInt(), stat),
+          style: TextStyle(
+            fontSize: fontSize,
+            fontWeight: superBold,
+            height: 0.9,
+            letterSpacing: -2.5,
+            foreground: Paint()
+              ..shader = const LinearGradient(
+                colors: [kAccentCyan, kPurpleGlow],
+              ).createShader(const Rect.fromLTWH(0, 0, 600, 200)),
+          ),
+        );
       },
-      child: GlassCard(
-        padding: EdgeInsets.symmetric(
-          vertical: isSmallScreen ? 16 : 20,
-          horizontal: 16,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Animated Number
-            TweenAnimationBuilder<double>(
-                  tween: Tween(
-                    begin: 0.0,
-                    end: _isVisible ? numericValue : 0.0,
-                  ),
-                  duration: 1800.ms,
-                  curve: Curves.easeOutExpo,
-                  builder: (context, value, _) {
-                    final displayText = _formatNumber(value, widget.stat);
-                    return SelectableText(
-                      displayText,
-                      style: TextStyle(
-                        fontSize: isSmallScreen ? 34 : 42,
-                        fontWeight: superBold,
-                        height: 1,
-                        letterSpacing: -1.5,
-                        foreground: Paint()
-                          ..shader = const LinearGradient(
-                            colors: [kAccentCyan, kPurpleGlow],
-                          ).createShader(const Rect.fromLTWH(0, 0, 200, 70)),
-                      ),
-                    );
-                  },
-                )
-                .animate(target: _isVisible ? 1 : 0)
-                .fadeIn(duration: 600.ms)
-                .slideY(begin: 0.3, curve: Curves.easeOutCubic)
-                .then(delay: widget.delay),
+    );
+  }
+}
 
-            const SizedBox(height: 10),
+class HugeStaticNumber extends StatelessWidget {
+  final String text;
+  final double fontSize;
 
-            // Label
-            SelectableText(
-                  widget.stat.label,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: isSmallScreen ? 12 : 14,
-                    fontWeight: semiBold,
-                    color: kWhite70,
-                    height: 1.4,
-                  ),
-                )
-                .animate(target: _isVisible ? 1 : 0)
-                .fadeIn(delay: 200.ms, duration: 500.ms)
-                .slideY(begin: 0.3),
-          ],
+  const HugeStaticNumber({
+    super.key,
+    required this.text,
+    required this.fontSize,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: fontSize,
+        fontWeight: FontWeight.w900,
+        height: 0.9,
+        letterSpacing: -1.5,
+        foreground: Paint()
+          ..shader = const LinearGradient(
+            colors: [kAccentCyan, kPurpleGlow],
+          ).createShader(const Rect.fromLTWH(0, 0, 600, 200)),
+      ),
+    );
+  }
+}
+
+class HugeLabel extends StatelessWidget {
+  final String text;
+  final double fontSize;
+
+  const HugeLabel({super.key, required this.text, required this.fontSize});
+
+  @override
+  Widget build(BuildContext context) {
+    return FittedBox(
+      fit: BoxFit.contain,
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        maxLines: 3,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: FontWeight.w700,
+          color: kWhite70,
+          height: 1.25,
+          letterSpacing: 1.0,
         ),
       ),
     );
   }
+}
 
-  String _formatNumber(double value, Stat stat) {
-    final int intValue = value.toInt();
-    if (stat.number.contains('%')) return '$intValue%';
-    if (stat.number.contains('+')) return '$intValue+';
-    if (stat.isNumeric) return intValue.toString();
-    return stat.number;
-  }
+String _formatNumber(int value, Stat stat) {
+  if (stat.number.contains('%')) return '$value%';
+  if (stat.number.contains('+')) return '$value+';
+  if (stat.number.contains('K')) return '${value}K';
+  if (stat.number.contains('M')) return '${value}M';
+  return value.toString();
 }

@@ -2,8 +2,8 @@ import 'package:codesphere/core/constants/constant_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../model/social_link.dart';
-import '../../model/stat.dart';
+import '../../models/social_link.dart';
+import '../../models/stat.dart';
 
 final List<Map<String, dynamic>> serviceData = [
   {
@@ -71,7 +71,7 @@ const List<Stat> stats = [
 const List<SocialLink> socialLinks = [
   SocialLink(
     icon: FontAwesomeIcons.linkedinIn,
-    url: "https://www.linkedin.com/in/thant-zin-9a855524/",
+    url: "https://www.linkedin.com/m/in/code-sphere-054226393/",
     brandColor: kLinkedIn,
   ),
   SocialLink(

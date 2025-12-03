@@ -1,3 +1,4 @@
+// lib/presentation/widgets/about/about_section.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -24,11 +25,11 @@ class _AboutSectionState extends State<AboutSection> {
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: context.assignHeight(0.12),
-        horizontal: 20,
+        horizontal: context.adaptive(20, 40),
       ),
       child: Column(
         children: [
-          // Title
+          // TITLE
           VisibilityDetector(
             key: const Key('about-title'),
             onVisibilityChanged: (info) {
@@ -40,20 +41,21 @@ class _AboutSectionState extends State<AboutSection> {
                 SelectableText(
                       "Crafting the Future of Mobile,\nOne App at a Time",
                       style: context.displayMedium.copyWith(
-                        fontSize: context.adaptive(36, 68),
+                        fontSize: context.adaptive(36, 55),
+                        height: 1.05,
                         fontWeight: superBold,
-                        height: 1.2,
+                        color: kWhite,
                       ),
                       textAlign: TextAlign.center,
                     )
                     .animate(target: _titleVisible ? 1 : 0)
-                    .fadeIn(duration: 1000.ms, delay: 500.ms)
+                    .fadeIn(duration: 900.ms, delay: 300.ms)
                     .slideY(begin: 0.4, curve: Curves.easeOutCubic),
           ),
 
-          const SizedBox(height: 40),
+          SizedBox(height: context.adaptive(32, 48, md: 40)),
 
-          // Subtitle — animates only when visible
+          // SUBTITLE
           VisibilityDetector(
             key: const Key('about-subtitle'),
             onVisibilityChanged: (info) {
@@ -63,13 +65,15 @@ class _AboutSectionState extends State<AboutSection> {
             },
             child:
                 Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.adaptive(16, 80),
+                      ),
                       child: SelectableText(
                         "At CodeSphere, we don’t just build apps — we architect digital experiences "
                         "that scale, perform, and delight. With experience in Flutter, Swift, Kotlin "
                         "and modern UI engineering, we deliver reliable and beautiful solutions.",
                         style: context.bodyLarge.copyWith(
-                          fontSize: context.adaptive(15, 18),
+                          fontSize: context.adaptive(15, 19),
                           height: 1.75,
                           color: kWhite70,
                         ),
@@ -77,12 +81,13 @@ class _AboutSectionState extends State<AboutSection> {
                       ),
                     )
                     .animate(target: _subtitleVisible ? 1 : 0)
-                    .fadeIn(duration: 1000.ms, delay: 500.ms)
+                    .fadeIn(duration: 900.ms, delay: 600.ms)
                     .slideY(begin: 0.3, curve: Curves.easeOutCubic),
           ),
 
-          const SizedBox(height: 80),
+          SizedBox(height: context.adaptive(60, 100, md: 80)),
 
+          // STATS GRID
           VisibilityDetector(
             key: const Key('stats-grid'),
             onVisibilityChanged: (info) {
@@ -102,13 +107,9 @@ class _AboutSectionState extends State<AboutSection> {
   Widget _buildStatsGrid(bool startAnimation) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final width = constraints.maxWidth;
-        final isSmall = width < 360;
-        final isMobile = context.isMobile;
-
-        final crossCount = isSmall ? 2 : (isMobile ? 2 : 4);
-        final aspectRatio = isSmall ? 1.35 : (isMobile ? 1.5 : 1.7);
-        final spacing = isSmall ? 16.0 : (isMobile ? 20.0 : 32.0);
+        final crossCount = context.adaptive(2, 4);
+        final aspectRatio = context.adaptive(1.5, 1.7);
+        final spacing = context.adaptive(20.0, 40.0);
 
         return GridView.builder(
           shrinkWrap: true,
@@ -123,7 +124,7 @@ class _AboutSectionState extends State<AboutSection> {
           itemCount: stats.length,
           itemBuilder: (context, index) {
             if (!startAnimation) return const SizedBox.shrink();
-            return StatCard(stat: stats[index], delay: (index * 160).ms);
+            return StatCard(stat: stats[index], delay: (index * 140).ms);
           },
         );
       },

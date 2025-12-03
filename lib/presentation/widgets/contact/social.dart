@@ -1,3 +1,4 @@
+//lib/presentation/widgets/contact/social.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/constants/constant_colors.dart';
 import '../../../core/constants/constant_data.dart';
 import '../../../core/widgets/animated_fade_slide.dart';
-import '../../../model/social_link.dart';
+import '../../../models/social_link.dart';
 
 class SocialRow extends StatelessWidget {
   const SocialRow({super.key});
