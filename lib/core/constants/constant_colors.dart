@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
 
-// const Color kPrimary = Color(0xFF080A1A);
-// const Color kAccentCyan = Color(0xFF00F0FF);
-// const Color kAccentPurple = Color(0xFF7F00FF);
-// const Color kTextPrimary = Color(0xFFEAEAEA);
-// const Color kCardBase = Color(0xFF1A1C30);
-// const Color kCyanPurpleGradientStart = Color(0xFF00F0FF);
-// const Color kCyanPurpleGradientEnd = Color(0xFF7F00FF);
-
 const Color kPrimary = Color(0xFF0A0E1A);
 const Color kCardBase = Color(0xFF131A2E);
 const Color kAccentCyan = Color(0xFF00D4FF);
@@ -43,7 +35,7 @@ const Color kFacebook = Color(0xFF1877F2);
 const Color kInstagram = Color(0xFFE4405F);
 const Color kViber = Color(0xFF665CAC);
 const Color kWhatsApp = Color(0xFF25D366);
-const Color kPortfolio = Color(0xFF00D4FF);
+const Color kTiktok = Color(0xFF000000);
 
 const Color kGrey25 = Color(0xFFFCFCFC); //Grey/25 | #FCFCFC
 const Color kGrey100 = Color(0xFFF2F2F2); //Grey/100 | #F2F2F2

@@ -80,9 +80,9 @@ const List<SocialLink> socialLinks = [
     brandColor: kFacebook,
   ),
   SocialLink(
-    icon: FontAwesomeIcons.code,
-    url: "https://devthantzin.com",
-    brandColor: kPortfolio,
+    icon: FontAwesomeIcons.tiktok,
+    url: "https://www.tiktok.com/@codespheremm",
+    brandColor: kTiktok,
   ),
 ];
 
