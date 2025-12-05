@@ -3,8 +3,8 @@ import 'package:codesphere/core/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../../../core/constants/constant_colors.dart';
 import '../../../core/widgets/glass_card.dart';
+import '../../../core/widgets/typography.dart';
 import '../../../models/stat.dart';
 
 class StatCard extends StatelessWidget {
@@ -19,34 +19,32 @@ class StatCard extends StatelessWidget {
           padding: EdgeInsets.zero,
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final double width = constraints.maxWidth;
-              final double height = constraints.maxHeight;
+              final width = constraints.maxWidth;
+              final height = constraints.maxHeight;
 
-              final double numberFontSize = width * 0.28;
-              final double labelFontSize = width * 0.05;
-
-              final double verticalPadding =
-                  height * (context.isMobile ? 0.18 : 0.21);
+              final numberFontSize = width * 0.26;
+              final verticalPadding =
+                  height * (context.isMobile ? 0.17 : 0.26).clamp(0.17, 0.28);
 
               return Padding(
                 padding: EdgeInsets.symmetric(
                   vertical: verticalPadding,
-                  horizontal: width * 0.05,
+                  horizontal: width * 0.1,
                 ),
                 child: Column(
                   children: [
-                    // NUMBER (Animated or Static)
+                    // BIG NUMBER
                     Expanded(
                       flex: 6,
                       child: FittedBox(
                         fit: BoxFit.contain,
                         child: stat.isNumeric
-                            ? HugeAnimatedNumber(
+                            ? AnimatedStatNumber(
                                 value: _parseNumericValue(stat),
                                 stat: stat,
                                 fontSize: numberFontSize,
                               )
-                            : HugeStaticNumber(
+                            : StaticStatNumber(
                                 text: stat.number,
                                 fontSize: numberFontSize,
                               ),
@@ -58,9 +56,13 @@ class StatCard extends StatelessWidget {
                     // LABEL
                     Expanded(
                       flex: 4,
-                      child: HugeLabel(
-                        text: stat.label,
-                        fontSize: labelFontSize,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: BodyLarge(
+                          stat.label,
+                          textAlign: TextAlign.center,
+                          maxLines: 3,
+                        ),
                       ),
                     ),
                   ],
@@ -79,12 +81,13 @@ class StatCard extends StatelessWidget {
   }
 }
 
-class HugeAnimatedNumber extends StatelessWidget {
+// Reusable animated number with gradient
+class AnimatedStatNumber extends StatelessWidget {
   final double value;
   final Stat stat;
   final double fontSize;
 
-  const HugeAnimatedNumber({
+  const AnimatedStatNumber({
     super.key,
     required this.value,
     required this.stat,
@@ -98,29 +101,22 @@ class HugeAnimatedNumber extends StatelessWidget {
       duration: 2400.ms,
       curve: Curves.easeOutExpo,
       builder: (context, val, _) {
-        return Text(
+        return GradientText(
           _formatNumber(val.toInt(), stat),
-          style: TextStyle(
-            fontSize: fontSize,
-            fontWeight: superBold,
-            height: 1.2,
-            letterSpacing: 1,
-            foreground: Paint()
-              ..shader = const LinearGradient(
-                colors: [kAccentCyan, kPurpleGlow],
-              ).createShader(const Rect.fromLTWH(0, 0, 600, 200)),
-          ),
+          fontSize: fontSize,
+          letterSpacing: 1,
         );
       },
     );
   }
 }
 
-class HugeStaticNumber extends StatelessWidget {
+// static number with gradient
+class StaticStatNumber extends StatelessWidget {
   final String text;
   final double fontSize;
 
-  const HugeStaticNumber({
+  const StaticStatNumber({
     super.key,
     required this.text,
     required this.fontSize,
@@ -128,42 +124,7 @@ class HugeStaticNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: fontSize,
-        fontWeight: FontWeight.w900,
-        height: 1.2,
-        letterSpacing: -1.5,
-        foreground: Paint()
-          ..shader = const LinearGradient(
-            colors: [kAccentCyan, kPurpleGlow],
-          ).createShader(const Rect.fromLTWH(0, 0, 600, 200)),
-      ),
-    );
-  }
-}
-
-class HugeLabel extends StatelessWidget {
-  final String text;
-  final double fontSize;
-
-  const HugeLabel({super.key, required this.text, required this.fontSize});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      textAlign: TextAlign.center,
-      maxLines: 3,
-      style: TextStyle(
-        fontSize: fontSize,
-        fontWeight: FontWeight.w700,
-        color: kWhite70,
-        height: 1.25,
-        letterSpacing: 1.0,
-      ),
-    );
+    return GradientText(text, fontSize: fontSize, letterSpacing: -1.5);
   }
 }
 

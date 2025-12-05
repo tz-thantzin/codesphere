@@ -8,13 +8,15 @@ import '../../../core/constants/constant_colors.dart';
 import '../../../core/constants/constant_data.dart';
 import '../../../core/utils/extensions/extensions.dart';
 import '../../../core/widgets/animated_fade_slide.dart';
+import '../../../core/widgets/typography.dart';
 
 class ContactInfo extends StatelessWidget {
   const ContactInfo({super.key});
 
   Future<void> _open(String url) async {
     final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
+    final canLaunch = await canLaunchUrl(uri);
+    if (canLaunch) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
   }
@@ -29,15 +31,9 @@ class ContactInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Title
-          SelectableText(
-            "Get in Touch",
-            style: TextStyle(
-              fontSize: context.adaptive(28, 48, md: 36, xl: 56),
-              fontWeight: FontWeight.w800,
-              color: kTextPrimary,
-              height: 1.2,
-              letterSpacing: -0.5,
-            ),
+          SubtitleLarge(
+            context.localization.contact_subtitle,
+            color: kTextPrimary,
           ),
 
           SizedBox(height: context.adaptive(32, 48, md: 40)),
@@ -54,7 +50,7 @@ class ContactInfo extends StatelessWidget {
             icon: FontAwesomeIcons.viber,
             text: kPhoneViber,
             color: kViber,
-            onTap: () => _open("tel:$kPhoneViber"),
+            onTap: () => _open("viber://chat?number=$kPhoneViber"),
           ),
           SizedBox(height: context.adaptive(16, 24, md: 20)),
           _ContactRow(
@@ -140,15 +136,14 @@ class _ContactRowState extends State<_ContactRow> {
 
                   // Text
                   Expanded(
-                    child: SelectableText(
-                      widget.text,
-                      style: TextStyle(
-                        fontSize: context.adaptive(15, 19, md: 17, xl: 21),
-                        color: _hover ? kTextPrimary : kTextSecondary,
-                        fontWeight: _hover ? FontWeight.w600 : FontWeight.w500,
-                        height: 1.4,
-                      ),
-                    ),
+                    child:
+                        BodyLarge(
+                          widget.text,
+                          color: _hover ? kTextPrimary : kTextSecondary,
+                        ).copyWithStyle(
+                          fontWeight: _hover ? semiBold : medium,
+                          height: 1.4,
+                        ),
                   ),
 
                   // Arrow

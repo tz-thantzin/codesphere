@@ -10,8 +10,10 @@ import '../../../core/di/providers.dart';
 import '../../../core/services/analytics_service.dart';
 import '../../../core/utils/extensions/extensions.dart';
 import '../../../core/widgets/animated_fade_slide.dart';
+import '../../../core/widgets/custom_toast.dart';
 import '../../../core/widgets/glass_card.dart';
 import '../../../core/widgets/glowing_button.dart';
+import '../../../core/widgets/typography.dart';
 import 'contact_info.dart';
 import 'social.dart';
 
@@ -98,22 +100,16 @@ class _Title extends StatelessWidget {
     visibilityKey: 'contact-title',
     delay: 100.ms,
     beginY: 0.4,
-    child: SelectableText(
-      "Let’s Build Something\nExtraordinary Together",
-      style: context.displayLarge.copyWith(
-        fontSize: context.adaptive(36, 55),
-        height: 1.05,
-        fontWeight: superBold,
-        color: kTextPrimary,
-        shadows: [
-          Shadow(
-            color: kAccentCyan.withValues(alpha: 0.25),
-            offset: const Offset(0, 6),
-            blurRadius: 30,
-          ),
-        ],
-      ),
+    child: TitleLarge(
+      context.localization.contact_title,
       textAlign: TextAlign.center,
+      shadows: [
+        Shadow(
+          color: kAccentCyan.withValues(alpha: 0.25),
+          offset: const Offset(0, 6),
+          blurRadius: 30,
+        ),
+      ],
     ),
   );
 }
@@ -166,17 +162,11 @@ class _ContactFormState extends ConsumerState<_ContactForm> {
 
     ref.listen(contactViewModelProvider, (previous, next) {
       if (next.isSuccess) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: kAccentCyan,
-            content: const Text(
-              "Message sent successfully! We'll contact you soon.",
-              style: TextStyle(color: kWhite, fontWeight: FontWeight.w600),
-            ),
-            duration: const Duration(seconds: 5),
-            behavior: SnackBarBehavior.floating,
-          ),
+        CustomToast.instance.show(
+          context,
+          message: context.localization.contact_message_sent_successful,
         );
+
         _formKey.currentState?.reset();
         for (var c in [
           _nameController,
@@ -187,57 +177,58 @@ class _ContactFormState extends ConsumerState<_ContactForm> {
           c.clear();
         }
       }
+
       if (next.error != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.red.shade600,
-            content: Text(next.error!),
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
+        CustomToast.instance.show(context, message: next.error!, isError: true);
       }
     });
 
     return AnimatedFadeSlide(
       visibilityKey: 'contact-form',
-      delay: 300.ms,
-      beginY: 0.35,
+      delay: 200.ms,
+      beginY: 0.3,
+      visibleFraction: 0.2,
       child: GlassCard(
         padding: EdgeInsets.all(context.adaptive(32, 56)),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              _buildField("Your Name", controller: _nameController),
+              _buildField(
+                context.localization.contact_your_name,
+                controller: _nameController,
+              ),
               SizedBox(height: context.adaptive(20, 28)),
               _buildField(
-                "Email Address",
+                context.localization.contact_email_address,
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
               ),
               SizedBox(height: context.adaptive(20, 28)),
               _buildField(
-                "Phone Number",
+                context.localization.contact_phone_number,
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
               ),
               SizedBox(height: context.adaptive(20, 28)),
               _buildField(
-                "Tell us about your project...",
+                context.localization.contact_tell_about_prj,
                 controller: _messageController,
                 maxLines: 8,
               ),
               SizedBox(height: context.adaptive(36, 56)),
 
               GlowingButton(
-                text: viewModel.isLoading ? "Sending..." : "Send Message",
+                text: viewModel.isLoading
+                    ? context.localization.contact_btn_sending
+                    : context.localization.contact_btn_send_message,
                 onPressed: viewModel.isLoading ? null : _submitForm,
                 filled: true,
                 padding: EdgeInsets.symmetric(
                   horizontal: context.adaptive(48, 72),
                   vertical: context.adaptive(20, 26),
                 ),
-                fontSize: context.adaptive(16, 20),
+                fontSize: context.adaptive(12, 16),
               ),
             ],
           ),
@@ -293,16 +284,16 @@ class _ContactFormState extends ConsumerState<_ContactForm> {
         final v = value?.trim();
         if (v == null || v.isEmpty) {
           return hint.contains("project")
-              ? "Please tell us about your project."
-              : "This field is required.";
+              ? context.localization.contact_warning_project_required
+              : context.localization.contact_warning_field_required;
         }
         if (hint.contains("Email") &&
-            !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(v)) {
-          return "Please enter a valid email.";
+            !RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(v)) {
+          return context.localization.contact_warning_enter_valid_email;
         }
         if (hint.contains("Phone") &&
-            !RegExp(r'^\+?[0-9][\d\s\-\(\)]{8,15}$').hasMatch(v)) {
-          return "Please enter a valid phone number.";
+            !RegExp(r'^\+?[0-9][\d\s\-()]{8,15}$').hasMatch(v)) {
+          return context.localization.contact_warning_enter_valid_phone_number;
         }
         return null;
       },

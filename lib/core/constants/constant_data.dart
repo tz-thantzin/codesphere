@@ -62,10 +62,10 @@ final List<Map<String, dynamic>> serviceData = [
 ];
 
 const List<Stat> stats = [
-  Stat("12+", "Years of Experience"),
-  Stat("50+", "Completed Projects"),
-  Stat("100%", "Client Commitment"),
-  Stat("Agile", "Fast Delivery", isNumeric: false),
+  Stat("11+", "Years Building Apps"),
+  Stat("50+", "Projects Delivered"),
+  Stat("4.5/5", "Client Rating", isNumeric: false),
+  Stat("99%", "On-Time Delivery"),
 ];
 
 const List<SocialLink> socialLinks = [

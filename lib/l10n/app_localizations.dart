@@ -135,6 +135,84 @@ abstract class AppLocalizations {
   /// **'What We Build'**
   String get what_we_build;
 
+  /// No description provided for @contact_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s Build Something\nExtraordinary Together'**
+  String get contact_title;
+
+  /// No description provided for @contact_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Get in Touch'**
+  String get contact_subtitle;
+
+  /// No description provided for @contact_message_sent_successful.
+  ///
+  /// In en, this message translates to:
+  /// **'Message sent successfully! We\'ll contact you soon.'**
+  String get contact_message_sent_successful;
+
+  /// No description provided for @contact_your_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Name'**
+  String get contact_your_name;
+
+  /// No description provided for @contact_email_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get contact_email_address;
+
+  /// No description provided for @contact_phone_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get contact_phone_number;
+
+  /// No description provided for @contact_tell_about_prj.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us about your project...'**
+  String get contact_tell_about_prj;
+
+  /// No description provided for @contact_btn_sending.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending...'**
+  String get contact_btn_sending;
+
+  /// No description provided for @contact_btn_send_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Message'**
+  String get contact_btn_send_message;
+
+  /// No description provided for @contact_warning_project_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please tell us about your project.'**
+  String get contact_warning_project_required;
+
+  /// No description provided for @contact_warning_field_required.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required.'**
+  String get contact_warning_field_required;
+
+  /// No description provided for @contact_warning_enter_valid_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email.'**
+  String get contact_warning_enter_valid_email;
+
+  /// No description provided for @contact_warning_enter_valid_phone_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number.'**
+  String get contact_warning_enter_valid_phone_number;
+
   /// No description provided for @codesphere.
   ///
   /// In en, this message translates to:

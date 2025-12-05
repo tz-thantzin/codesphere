@@ -1,3 +1,4 @@
+//lib/core/utils/extensions/layout_adapter_ex.dart
 import 'package:flutter/material.dart';
 import 'package:layout/layout.dart';
 
@@ -52,5 +53,5 @@ extension LayoutAdapter on BuildContext {
   bool get isDesktop => MediaQuery.of(this).size.width >= 1100;
 
   // Custom getter from user's provided snippet
-  double get appBarHeight => autoAdaptive(60);
+  double get appBarHeight => 60;
 }

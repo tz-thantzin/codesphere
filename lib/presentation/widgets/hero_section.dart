@@ -1,13 +1,11 @@
-//lib/presentation/widgets/hero_section.dart
+// lib/presentation/widgets/hero_section.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../../core/constants/constant_colors.dart';
-import '../../core/utils/extensions/context_ex.dart';
-import '../../core/utils/extensions/layout_adapter_ex.dart';
-import '../../core/utils/extensions/theme_ex.dart';
+import '../../core/utils/extensions/extensions.dart';
 import '../../core/widgets/animated_fade_slide.dart';
 import '../../core/widgets/glowing_button.dart';
+import '../../core/widgets/typography.dart';
 
 class HeroSection extends StatelessWidget {
   final VoidCallback onViewWork;
@@ -21,76 +19,59 @@ class HeroSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isMobile = context.isMobile;
-
-    return ConstrainedBox(
+    return Container(
       constraints: BoxConstraints(minHeight: context.screenHeight * 0.95),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Headline
-            AnimatedFadeSlide(
-              visibilityKey: 'hero-headline',
-              delay: 100.ms,
-              beginY: 0.4,
-              child: SelectableText(
-                context.localization.we_build_exceptional,
-                style: context.displayLarge.copyWith(
-                  fontSize: context.adaptive(36, 65),
-                  height: 1.05,
-                  fontWeight: superBold,
-                  color: kWhite,
-                ),
-                textAlign: TextAlign.center,
-              ),
+      padding: const EdgeInsets.symmetric(horizontal: 32),
+      margin: EdgeInsets.only(top: context.appBarHeight),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          AnimatedFadeSlide(
+            visibilityKey: 'hero-headline',
+            delay: 100.ms,
+            beginY: 0.4,
+            child: TitleLarge(
+              context.localization.we_build_exceptional,
+              textAlign: TextAlign.center,
             ),
+          ),
 
-            const SizedBox(height: 24),
+          const SizedBox(height: 24),
 
-            // Subtitle
-            AnimatedFadeSlide(
-              visibilityKey: 'hero-subtitle',
-              delay: 500.ms,
-              beginY: 0.25,
-              child: SelectableText(
-                context.localization.premium_android_ios_studio,
-                style: context.titleMedium.copyWith(
-                  fontSize: isMobile ? 18 : 22,
-                  fontWeight: FontWeight.w500,
-                ),
-                textAlign: TextAlign.center,
-              ),
+          AnimatedFadeSlide(
+            visibilityKey: 'hero-subtitle',
+            delay: 500.ms,
+            beginY: 0.25,
+            child: SubtitleLarge(
+              context.localization.premium_android_ios_studio,
             ),
+          ),
 
-            const SizedBox(height: 80),
+          const SizedBox(height: 80),
 
-            // Buttons – scale + fade in together
-            AnimatedFadeSlide(
-              visibilityKey: 'hero-buttons',
-              delay: 800.ms,
-              beginY: 0.2,
-              curve: Curves.easeOutBack,
-              child: _buildButtons(
-                onViewWork: onViewWork,
-                onGetQuote: onGetQuote,
-                isMobile: isMobile,
-              ),
+          AnimatedFadeSlide(
+            visibilityKey: 'hero-buttons',
+            delay: 800.ms,
+            beginY: 0.2,
+            curve: Curves.easeOutBack,
+            child: _HeroButtons(
+              onViewWork: onViewWork,
+              onGetQuote: onGetQuote,
+              isMobile: context.isMobile,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class _buildButtons extends StatelessWidget {
+class _HeroButtons extends StatelessWidget {
   final VoidCallback onViewWork;
   final VoidCallback onGetQuote;
   final bool isMobile;
 
-  const _buildButtons({
+  const _HeroButtons({
     required this.onViewWork,
     required this.onGetQuote,
     required this.isMobile,

@@ -1,4 +1,4 @@
-//lib/presentation/widgets/footer_section.dart
+// lib/presentation/widgets/footer_section.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,8 +6,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/constants/constant_colors.dart';
 import '../../core/constants/constant_data.dart';
+import '../../core/constants/constant_sizes.dart';
 import '../../core/utils/extensions/extensions.dart';
 import '../../core/widgets/animated_fade_slide.dart';
+import '../../core/widgets/typography.dart';
 import '../../models/social_link.dart';
 
 class Footer extends StatelessWidget {
@@ -74,54 +76,62 @@ class _MobileLayout extends StatelessWidget {
   );
 }
 
+// LOGO
 class _Logo extends StatelessWidget {
   const _Logo();
+
   @override
-  Widget build(BuildContext context) => ShaderMask(
-    shaderCallback: (bounds) => kButtonGradient.createShader(bounds),
-    child: SelectableText(
+  Widget build(BuildContext context) {
+    return GradientText(
       context.localization.codesphere,
-      style: TextStyle(
-        fontSize: 34,
-        fontWeight: superBold,
-        color: kWhite,
-        letterSpacing: 1.4,
-      ),
-    ),
-  );
+      textAlign: TextAlign.center,
+      fontSize: context.adaptive(ts28, ts48),
+      gradient: kButtonGradient,
+      shimmer: true,
+    );
+  }
 }
 
+// COPYRIGHT
 class _Copyright extends StatelessWidget {
   const _Copyright();
+
   @override
-  Widget build(BuildContext context) => SelectableText.rich(
-    textAlign: TextAlign.center,
-    TextSpan(
-      text: "${context.localization.footer_copyright} ",
-      style: TextStyle(fontSize: 15, color: kTextSecondary, height: 1.7),
-      children: [
-        TextSpan(
-          text: "${context.localization.footer_rights_reserved}\n",
-          style: const TextStyle(fontWeight: FontWeight.w600),
-        ),
-        TextSpan(
-          text: context.localization.footer_tagline,
-          style: const TextStyle(fontStyle: FontStyle.italic),
-        ),
-      ],
-    ),
-  );
+  Widget build(BuildContext context) {
+    return SelectableText.rich(
+      TextSpan(
+        text: "${context.localization.footer_copyright} ",
+        style: const TextStyle(color: kTextSecondary, height: 1.7),
+        children: [
+          TextSpan(
+            text: context.localization.footer_rights_reserved,
+            style: const TextStyle(fontWeight: bold),
+          ),
+          const TextSpan(text: "\n"),
+          TextSpan(
+            text: context.localization.footer_tagline,
+            style: const TextStyle(fontStyle: FontStyle.italic),
+          ),
+        ],
+      ),
+      textAlign: TextAlign.center,
+    );
+  }
 }
 
+// SOCIAL ICONS
 class _SocialIcons extends StatelessWidget {
   const _SocialIcons();
+
   @override
-  Widget build(BuildContext context) => Wrap(
-    spacing: 28,
-    runSpacing: 20,
-    alignment: WrapAlignment.center,
-    children: socialLinks.map((link) => _SocialButton(social: link)).toList(),
-  );
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 28,
+      runSpacing: 20,
+      alignment: WrapAlignment.center,
+      children: socialLinks.map((link) => _SocialButton(social: link)).toList(),
+    );
+  }
 }
 
 class _SocialButton extends StatefulWidget {
@@ -174,13 +184,9 @@ class _SocialButtonState extends State<_SocialButton> {
                   ),
                 )
                 .animate(target: _hover ? 1 : 0)
-                .scaleXY(
-                  begin: 1.0,
-                  end: 1.28,
-                  duration: const Duration(milliseconds: 350),
-                )
+                .scaleXY(begin: 1.0, end: 1.28, duration: 350.ms)
                 .shimmer(
-                  duration: const Duration(milliseconds: 2200),
+                  duration: 2200.ms,
                   color: glow.withValues(alpha: 0.35),
                 ),
       ),

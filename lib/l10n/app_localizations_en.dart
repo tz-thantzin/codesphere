@@ -30,6 +30,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String get what_we_build => 'What We Build';
 
   @override
+  String get contact_title => 'Let’s Build Something\nExtraordinary Together';
+
+  @override
+  String get contact_subtitle => 'Get in Touch';
+
+  @override
+  String get contact_message_sent_successful => 'Message sent successfully! We\'ll contact you soon.';
+
+  @override
+  String get contact_your_name => 'Your Name';
+
+  @override
+  String get contact_email_address => 'Email Address';
+
+  @override
+  String get contact_phone_number => 'Phone Number';
+
+  @override
+  String get contact_tell_about_prj => 'Tell us about your project...';
+
+  @override
+  String get contact_btn_sending => 'Sending...';
+
+  @override
+  String get contact_btn_send_message => 'Send Message';
+
+  @override
+  String get contact_warning_project_required => 'Please tell us about your project.';
+
+  @override
+  String get contact_warning_field_required => 'This field is required.';
+
+  @override
+  String get contact_warning_enter_valid_email => 'Please enter a valid email.';
+
+  @override
+  String get contact_warning_enter_valid_phone_number => 'Please enter a valid phone number.';
+
+  @override
   String get codesphere => 'CodeSphere';
 
   @override

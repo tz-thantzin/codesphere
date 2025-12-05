@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-import '../../../core/constants/constant_colors.dart';
 import '../../../core/constants/constant_data.dart';
 import '../../../core/utils/extensions/extensions.dart';
+import '../../../core/widgets/typography.dart';
 import 'stat_card.dart';
 
 class AboutSection extends StatefulWidget {
@@ -29,7 +29,6 @@ class _AboutSectionState extends State<AboutSection> {
       ),
       child: Column(
         children: [
-          // TITLE
           VisibilityDetector(
             key: const Key('about-title'),
             onVisibilityChanged: (info) {
@@ -38,14 +37,8 @@ class _AboutSectionState extends State<AboutSection> {
               }
             },
             child:
-                SelectableText(
+                TitleLarge(
                       context.localization.crafting_mobile,
-                      style: context.displayMedium.copyWith(
-                        fontSize: context.adaptive(36, 55),
-                        height: 1.05,
-                        fontWeight: superBold,
-                        color: kWhite,
-                      ),
                       textAlign: TextAlign.center,
                     )
                     .animate(target: _titleVisible ? 1 : 0)
@@ -55,7 +48,6 @@ class _AboutSectionState extends State<AboutSection> {
 
           SizedBox(height: context.adaptive(32, 48, md: 40)),
 
-          // SUBTITLE
           VisibilityDetector(
             key: const Key('about-subtitle'),
             onVisibilityChanged: (info) {
@@ -68,13 +60,8 @@ class _AboutSectionState extends State<AboutSection> {
                       padding: EdgeInsets.symmetric(
                         horizontal: context.adaptive(16, 80),
                       ),
-                      child: SelectableText(
+                      child: BodyLarge(
                         context.localization.about_codesphere_description,
-                        style: context.bodyLarge.copyWith(
-                          fontSize: context.adaptive(15, 19),
-                          height: 1.75,
-                          color: kWhite70,
-                        ),
                         textAlign: TextAlign.center,
                       ),
                     )
@@ -85,7 +72,6 @@ class _AboutSectionState extends State<AboutSection> {
 
           SizedBox(height: context.adaptive(60, 100, md: 80)),
 
-          // STATS GRID
           VisibilityDetector(
             key: const Key('stats-grid'),
             onVisibilityChanged: (info) {

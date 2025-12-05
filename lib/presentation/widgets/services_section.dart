@@ -7,6 +7,7 @@ import '../../core/constants/constant_data.dart';
 import '../../core/utils/extensions/extensions.dart';
 import '../../core/widgets/animated_fade_slide.dart';
 import '../../core/widgets/glass_card.dart';
+import '../../core/widgets/typography.dart';
 
 class ServicesSection extends StatelessWidget {
   const ServicesSection({super.key});
@@ -25,15 +26,9 @@ class ServicesSection extends StatelessWidget {
             visibilityKey: 'services-title',
             delay: 300.ms,
             beginY: 0.4,
-            child: SelectableText(
+            child: TitleLarge(
               context.localization.what_we_build,
               textAlign: TextAlign.center,
-              style: context.displayMedium.copyWith(
-                fontSize: context.adaptive(36, 55),
-                height: 1.05,
-                fontWeight: superBold,
-                color: kWhite,
-              ),
             ),
           ),
 
@@ -117,8 +112,6 @@ class _ServiceCardState extends State<_ServiceCard> {
             builder: (context, constraints) {
               final maxHeight = constraints.maxHeight;
               final iconSize = (maxHeight * 0.22).clamp(30.0, 64.0);
-              final titleSize = (maxHeight * 0.09).clamp(15.0, 24.0);
-              final descSize = (maxHeight * 0.07).clamp(10.0, 15.0);
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -157,33 +150,29 @@ class _ServiceCardState extends State<_ServiceCard> {
                   SizedBox(height: maxHeight * 0.12),
 
                   // TITLE
-                  Text(
-                    widget.title,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: titleSize,
-                      fontWeight: FontWeight.w800,
-                      height: 1.2,
-                      color: _hovered ? kAccentCyan : kTextPrimary,
-                    ),
+                  FlexiText(
+                    text: widget.title,
+                    factor: 0.09,
+                    minSize: 15.0,
+                    maxSize: 24.0,
+                    fontWeight: FontWeight.w800,
+                    color: _hovered ? kAccentCyan : kTextPrimary,
                     maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
                   ),
 
                   SizedBox(height: maxHeight * 0.06),
 
                   // DESCRIPTION
                   Expanded(
-                    child: Text(
-                      widget.desc,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: descSize,
-                        height: 1.7,
-                        color: kWhite70,
-                      ),
+                    child: FlexiText(
+                      text: widget.desc,
+                      factor: 0.9,
+                      minSize: 12.0,
+                      maxSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      color: kWhite70,
+                      height: 1.7,
                       maxLines: 4,
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
