@@ -25,7 +25,9 @@ const double s200 = 200;
 const double s240 = 240;
 
 // Typography Scale
-const double ts96 = 96; // Hero huge
+const double ts140 = 140;
+const double ts120 = 120;
+const double ts96 = 96;
 const double ts80 = 80;
 const double ts70 = 70;
 const double ts60 = 60;

@@ -31,7 +31,7 @@ class ContactInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Title
-          SubtitleLarge(
+          SubtitleMedium(
             context.localization.contact_subtitle,
             color: kTextPrimary,
           ),

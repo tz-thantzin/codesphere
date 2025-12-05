@@ -42,7 +42,7 @@ class HeroSection extends StatelessWidget {
             visibilityKey: 'hero-subtitle',
             delay: 500.ms,
             beginY: 0.25,
-            child: SubtitleLarge(
+            child: SubtitleMedium(
               context.localization.premium_android_ios_studio,
             ),
           ),

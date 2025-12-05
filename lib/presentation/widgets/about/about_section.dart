@@ -24,8 +24,8 @@ class _AboutSectionState extends State<AboutSection> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: context.assignHeight(0.12),
-        horizontal: context.adaptive(20, 40),
+        vertical: context.adaptive(80, 160, md: 100),
+        horizontal: 24,
       ),
       child: Column(
         children: [
@@ -82,7 +82,7 @@ class _AboutSectionState extends State<AboutSection> {
                 setState(() => _statsVisible = true);
               }
             },
-            child: _buildStatsGrid(_statsVisible),
+            child: _buildStatsGrid(context, _statsVisible),
           ),
 
           const SizedBox(height: 40),
@@ -91,33 +91,31 @@ class _AboutSectionState extends State<AboutSection> {
     );
   }
 
-  Widget _buildStatsGrid(bool startAnimation) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        int crossCount = 2;
-        if (context.screenWidth > 600) crossCount = 3;
-        if (context.screenWidth > 900) crossCount = 4;
-
-        double aspectRatio = 1.8;
-        if (crossCount == 2) aspectRatio = 1.6;
-
-        return GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.zero,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossCount,
-            childAspectRatio: aspectRatio,
-            mainAxisSpacing: 20,
-            crossAxisSpacing: 20,
+  Widget _buildStatsGrid(BuildContext context, bool startAnimation) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: context.adaptive(24, 32)),
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.zero,
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: context.adaptive(300, 350),
+          childAspectRatio: context.adaptive(
+            1.7,
+            2.2,
+            sm: 1.9,
+            md: 2.1,
+            xl: 2.3,
           ),
-          itemCount: stats.length,
-          itemBuilder: (context, index) {
-            if (!startAnimation) return const SizedBox.shrink();
-            return StatCard(stat: stats[index], delay: (index * 140).ms);
-          },
-        );
-      },
+          mainAxisSpacing: 20,
+          crossAxisSpacing: 20,
+        ),
+        itemCount: stats.length,
+        itemBuilder: (context, index) {
+          if (!startAnimation) return const SizedBox.shrink();
+          return StatCard(stat: stats[index], delay: (index * 140).ms);
+        },
+      ),
     );
   }
 }

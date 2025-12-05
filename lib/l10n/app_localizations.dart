@@ -236,6 +236,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Crafting exceptional mobile experiences.'**
   String get footer_tagline;
+
+  /// No description provided for @page_not_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Page Not Found'**
+  String get page_not_found;
+
+  /// No description provided for @the_page_you_are_looking_for_does_not_exist.
+  ///
+  /// In en, this message translates to:
+  /// **'The page you\'re looking for doesn\'t exist or has been moved.'**
+  String get the_page_you_are_looking_for_does_not_exist;
+
+  /// No description provided for @go_back_home.
+  ///
+  /// In en, this message translates to:
+  /// **'Go Back Home'**
+  String get go_back_home;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

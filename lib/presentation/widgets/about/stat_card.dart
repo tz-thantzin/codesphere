@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../core/utils/extensions/layout_adapter_ex.dart';
 import '../../../core/widgets/glass_card.dart';
 import '../../../core/widgets/typography.dart';
 import '../../../models/stat.dart';
@@ -19,40 +20,44 @@ class StatCard extends StatelessWidget {
           child: LayoutBuilder(
             builder: (context, constraints) {
               final width = constraints.maxWidth;
-              final numberFontSize = (width * 0.13).clamp(24.0, 48.0);
-              return Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // BIG NUMBER
-                  Expanded(
-                    flex: 2,
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: stat.isNumeric
-                          ? AnimatedStatNumber(
-                              value: _parseNumericValue(stat),
-                              stat: stat,
-                              fontSize: numberFontSize,
-                            )
-                          : StaticStatNumber(
-                              text: stat.number,
-                              fontSize: numberFontSize,
-                            ),
+              final numberFontSize = (width * 0.11).clamp(24.0, 48.0);
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: context.adaptive(18, 24, sm: 20, md: 24, xl: 26),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // BIG NUMBER
+                    Expanded(
+                      flex: 2,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: stat.isNumeric
+                            ? AnimatedStatNumber(
+                                value: _parseNumericValue(stat),
+                                stat: stat,
+                                fontSize: numberFontSize,
+                              )
+                            : StaticStatNumber(
+                                text: stat.number,
+                                fontSize: numberFontSize,
+                              ),
+                      ),
                     ),
-                  ),
 
-                  // LABEL
-                  Expanded(
-                    child: BodyLarge(
-                      stat.label,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      fontSize: (width * 0.07).clamp(11.0, 14.0),
+                    // LABEL
+                    Expanded(
+                      child: BodyMedium(
+                        stat.label,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             },
           ),

@@ -36,6 +36,7 @@ const Color kInstagram = Color(0xFFE4405F);
 const Color kViber = Color(0xFF665CAC);
 const Color kWhatsApp = Color(0xFF25D366);
 const Color kTiktok = Color(0xFF000000);
+const Color kPortfolio = Color(0xFFFFFFF);
 
 const Color kGrey25 = Color(0xFFFCFCFC); //Grey/25 | #FCFCFC
 const Color kGrey100 = Color(0xFFF2F2F2); //Grey/100 | #F2F2F2

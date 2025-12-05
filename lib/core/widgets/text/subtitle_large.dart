@@ -1,6 +1,6 @@
 part of '../typography.dart';
 
-class BodyLarge extends StatelessWidget {
+class SubtitleLarge extends StatelessWidget {
   final String text;
   final TextAlign? textAlign;
   final Color? color;
@@ -8,7 +8,7 @@ class BodyLarge extends StatelessWidget {
   final int? maxLines;
   final TextOverflow? overflow;
 
-  const BodyLarge(
+  const SubtitleLarge(
     this.text, {
     super.key,
     this.textAlign,
@@ -26,10 +26,11 @@ class BodyLarge extends StatelessWidget {
       maxLines: maxLines,
       overflow: overflow,
       style: GoogleFonts.inter(
-        fontSize: context.adaptive(ts15, ts19),
-        fontWeight: medium,
-        height: 1.2,
-        color: color ?? kWhite70,
+        fontSize: context.adaptive(ts24, ts32),
+        fontWeight: bold,
+        height: 1.3,
+        letterSpacing: -0.2,
+        color: color ?? kWhite,
         shadows: shadows,
       ),
     );

@@ -22,8 +22,8 @@
   "codesphere": "CodeSphere",
   "footer_copyright": "© 2025 CodeSphere.",
   "footer_rights_reserved": "All rights reserved.",
-  "footer_tagline": "Crafting exceptional mobile experiences."
-
-
-
+  "footer_tagline": "Crafting exceptional mobile experiences.",
+  "page_not_found": "Page Not Found",
+  "the_page_you_are_looking_for_does_not_exist": "The page you're looking for doesn't exist or has been moved.",
+  "go_back_home": "Go Back Home"
 }

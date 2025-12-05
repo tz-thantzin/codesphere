@@ -79,4 +79,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get footer_tagline => 'Crafting exceptional mobile experiences.';
+
+  @override
+  String get page_not_found => 'Page Not Found';
+
+  @override
+  String get the_page_you_are_looking_for_does_not_exist => 'The page you\'re looking for doesn\'t exist or has been moved.';
+
+  @override
+  String get go_back_home => 'Go Back Home';
 }

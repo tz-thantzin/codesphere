@@ -84,6 +84,11 @@ const List<SocialLink> socialLinks = [
     url: "https://www.tiktok.com/@codespheremm",
     brandColor: kTiktok,
   ),
+  SocialLink(
+    icon: FontAwesomeIcons.code,
+    url: "https://devthantzin.com",
+    brandColor: kPortfolio,
+  ),
 ];
 
 const String kEmail = "codesphere.mm@gmail.com";

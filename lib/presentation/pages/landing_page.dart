@@ -14,7 +14,7 @@ import '../widgets/about/about_section.dart';
 import '../widgets/contact/contact_section.dart';
 import '../widgets/footer_section.dart';
 import '../widgets/hero_section.dart';
-import '../widgets/services_section.dart';
+import '../widgets/service/services_section.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});

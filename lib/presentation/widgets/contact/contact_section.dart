@@ -24,8 +24,8 @@ class ContactSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: context.adaptive(100, 200),
-        horizontal: context.adaptive(20, 40),
+        vertical: context.adaptive(80, 160, md: 100),
+        horizontal: 24,
       ),
       child: Center(
         child: ConstrainedBox(

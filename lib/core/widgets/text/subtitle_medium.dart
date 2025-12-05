@@ -1,13 +1,13 @@
 part of '../typography.dart';
 
-class SubtitleLarge extends StatelessWidget {
+class SubtitleMedium extends StatelessWidget {
   final String text;
   final TextAlign? textAlign;
   final Color? color;
   final int? maxLines;
   final TextOverflow? overflow;
 
-  const SubtitleLarge(
+  const SubtitleMedium(
     this.text, {
     super.key,
     this.textAlign,
