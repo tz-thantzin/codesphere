@@ -32,19 +32,21 @@ dependencies:
   lottie: ^3.3.2
   animated_text_kit: ^4.3.0
 
-  # Firebase/Persistence
+  # Firebase / Persistence
   firebase_core: ^4.2.1
   cloud_firestore: ^6.1.0
+  firebase_analytics: ^12.0.4
+
+  # Routing
+  go_router: ^17.0.0
 
   # Utils
-  go_router: ^17.0.0
   flutter_svg: ^2.2.3
   intl: any
   scrollable_positioned_list: ^0.3.8
   font_awesome_flutter: ^10.12.0
   web: ^1.1.1
   visibility_detector: ^0.4.0+2
-  firebase_analytics: ^12.0.4
   equatable: ^2.0.7
   logger: ^2.6.2
 
