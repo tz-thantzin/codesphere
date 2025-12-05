@@ -1,5 +1,4 @@
 // lib/presentation/widgets/about/stat_card.dart
-import 'package:codesphere/core/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -20,53 +19,40 @@ class StatCard extends StatelessWidget {
           child: LayoutBuilder(
             builder: (context, constraints) {
               final width = constraints.maxWidth;
-              final height = constraints.maxHeight;
-
-              final numberFontSize = width * 0.26;
-              final verticalPadding =
-                  height * (context.isMobile ? 0.17 : 0.26).clamp(0.17, 0.28);
-
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: verticalPadding,
-                  horizontal: width * 0.1,
-                ),
-                child: Column(
-                  children: [
-                    // BIG NUMBER
-                    Expanded(
-                      flex: 6,
-                      child: FittedBox(
-                        fit: BoxFit.contain,
-                        child: stat.isNumeric
-                            ? AnimatedStatNumber(
-                                value: _parseNumericValue(stat),
-                                stat: stat,
-                                fontSize: numberFontSize,
-                              )
-                            : StaticStatNumber(
-                                text: stat.number,
-                                fontSize: numberFontSize,
-                              ),
-                      ),
+              final numberFontSize = (width * 0.13).clamp(24.0, 48.0);
+              return Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // BIG NUMBER
+                  Expanded(
+                    flex: 2,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: stat.isNumeric
+                          ? AnimatedStatNumber(
+                              value: _parseNumericValue(stat),
+                              stat: stat,
+                              fontSize: numberFontSize,
+                            )
+                          : StaticStatNumber(
+                              text: stat.number,
+                              fontSize: numberFontSize,
+                            ),
                     ),
+                  ),
 
-                    const SizedBox(height: 12),
-
-                    // LABEL
-                    Expanded(
-                      flex: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: BodyLarge(
-                          stat.label,
-                          textAlign: TextAlign.center,
-                          maxLines: 3,
-                        ),
-                      ),
+                  // LABEL
+                  Expanded(
+                    child: BodyLarge(
+                      stat.label,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      fontSize: (width * 0.07).clamp(11.0, 14.0),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               );
             },
           ),
@@ -81,7 +67,6 @@ class StatCard extends StatelessWidget {
   }
 }
 
-// Reusable animated number with gradient
 class AnimatedStatNumber extends StatelessWidget {
   final double value;
   final Stat stat;

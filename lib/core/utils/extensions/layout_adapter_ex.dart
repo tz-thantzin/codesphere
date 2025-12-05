@@ -1,8 +1,8 @@
-//lib/core/utils/extensions/layout_adapter_ex.dart
+// lib/core/utils/extensions/layout_adapter_ex.dart
 import 'package:flutter/material.dart';
 import 'package:layout/layout.dart';
 
-import 'context_ex.dart';
+import 'context_ex.dart'; // Assuming context_ex provides screenHeight/screenWidth
 
 extension LayoutAdapter on BuildContext {
   T adaptive<T>(T xs, T lg, {T? sm, T? md, T? xl}) {
@@ -39,15 +39,20 @@ extension LayoutAdapter on BuildContext {
     double additions = 0,
     double subs = 0,
   }) {
+    // Assuming screenHeight is available via context_ex.dart
     return (screenHeight - (subs) + (additions)) * fraction;
   }
 
   double assignWidth(double fraction, {double additions = 0, double subs = 0}) {
+    // Assuming screenWidth is available via context_ex.dart
     return (screenWidth - (subs) + (additions)) * fraction;
   }
 
   /// mobile < 780
   bool get isMobile => MediaQuery.of(this).size.width < 780;
+
+  /// tablet >= 780 and < 1100
+  bool get isTablet => screenWidth >= 780 && screenWidth < 1100;
 
   /// desktop >= 1100
   bool get isDesktop => MediaQuery.of(this).size.width >= 1100;

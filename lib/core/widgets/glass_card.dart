@@ -11,7 +11,7 @@ class GlassCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding ?? const EdgeInsets.all(32),
+      padding: padding ?? const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: kCardBase.withValues(alpha: 0.45),
         borderRadius: BorderRadius.circular(28),

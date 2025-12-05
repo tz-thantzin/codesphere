@@ -7,12 +7,14 @@ class BodyLarge extends StatelessWidget {
   final List<Shadow>? shadows;
   final int? maxLines;
   final TextOverflow? overflow;
+  final double? fontSize;
 
   const BodyLarge(
     this.text, {
     super.key,
     this.textAlign,
     this.color,
+    this.fontSize,
     this.shadows,
     this.maxLines,
     this.overflow,
@@ -26,9 +28,9 @@ class BodyLarge extends StatelessWidget {
       maxLines: maxLines,
       overflow: overflow,
       style: GoogleFonts.inter(
-        fontSize: context.adaptive(ts15, ts19),
+        fontSize: fontSize ?? context.adaptive(ts15, ts19),
         fontWeight: medium,
-        height: 1.75,
+        height: 1.2,
         color: color ?? kWhite70,
         shadows: shadows,
       ),

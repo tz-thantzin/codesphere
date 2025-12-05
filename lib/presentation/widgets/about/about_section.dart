@@ -29,6 +29,7 @@ class _AboutSectionState extends State<AboutSection> {
       ),
       child: Column(
         children: [
+          // Title
           VisibilityDetector(
             key: const Key('about-title'),
             onVisibilityChanged: (info) {
@@ -48,6 +49,7 @@ class _AboutSectionState extends State<AboutSection> {
 
           SizedBox(height: context.adaptive(32, 48, md: 40)),
 
+          // Subtitle
           VisibilityDetector(
             key: const Key('about-subtitle'),
             onVisibilityChanged: (info) {
@@ -72,6 +74,7 @@ class _AboutSectionState extends State<AboutSection> {
 
           SizedBox(height: context.adaptive(60, 100, md: 80)),
 
+          // Stats Grid
           VisibilityDetector(
             key: const Key('stats-grid'),
             onVisibilityChanged: (info) {
@@ -91,9 +94,12 @@ class _AboutSectionState extends State<AboutSection> {
   Widget _buildStatsGrid(bool startAnimation) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final crossCount = context.adaptive(2, 4);
-        final aspectRatio = context.adaptive(1.5, 1.7);
-        final spacing = context.adaptive(20.0, 40.0);
+        int crossCount = 2;
+        if (context.screenWidth > 600) crossCount = 3;
+        if (context.screenWidth > 900) crossCount = 4;
+
+        double aspectRatio = 1.8;
+        if (crossCount == 2) aspectRatio = 1.6;
 
         return GridView.builder(
           shrinkWrap: true,
@@ -102,8 +108,8 @@ class _AboutSectionState extends State<AboutSection> {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossCount,
             childAspectRatio: aspectRatio,
-            mainAxisSpacing: spacing,
-            crossAxisSpacing: spacing,
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 20,
           ),
           itemCount: stats.length,
           itemBuilder: (context, index) {
