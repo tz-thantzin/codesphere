@@ -66,13 +66,9 @@ class _MobileLayout extends StatelessWidget {
   const _MobileLayout();
   @override
   Widget build(BuildContext context) => const Column(
-    children: [
-      _Logo(),
-      SizedBox(height: 32),
-      _Copyright(),
-      SizedBox(height: 48),
-      _SocialIcons(),
-    ],
+    mainAxisSize: MainAxisSize.max,
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [_Logo(), SizedBox(height: 32), _Copyright()],
   );
 }
 

@@ -1,5 +1,5 @@
 name: codesphere
-description: "A new Flutter project."
+description: "CodeSphere is a modern software development studio delivering high-quality mobile and web applications. We specialize in Flutter, iOS, Android, and scalable cloud-powered solutions that combine performance, clean architecture, and exceptional UI/UX design."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1

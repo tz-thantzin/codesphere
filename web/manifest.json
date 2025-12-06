@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "CodeSphere is a modern software development studio delivering high-quality mobile and web applications. We specialize in Flutter, iOS, Android, and scalable cloud-powered solutions that combine performance, clean architecture, and exceptional UI/UX design.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

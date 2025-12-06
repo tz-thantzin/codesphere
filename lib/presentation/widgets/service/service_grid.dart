@@ -20,7 +20,13 @@ class ServicesGrid extends StatelessWidget {
       padding: EdgeInsets.zero,
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: context.adaptive(400, 450),
-        childAspectRatio: context.adaptive(0.7, 1.2, sm: 0.9, md: 1.0, xl: 1.3),
+        childAspectRatio: context.adaptive(
+          0.8,
+          1.2,
+          sm: 0.95,
+          md: 1.1,
+          xl: 1.3,
+        ),
         crossAxisSpacing: spacing,
         mainAxisSpacing: spacing,
       ),

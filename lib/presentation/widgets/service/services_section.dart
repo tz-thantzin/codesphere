@@ -31,14 +31,7 @@ class ServicesSection extends StatelessWidget {
             ),
           ),
           SizedBox(height: context.adaptive(60, 100, md: 80)),
-          Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: context.adaptive(24, 32),
-              ),
-              child: ServicesGrid(),
-            ),
-          ),
+          Center(child: ServicesGrid()),
         ],
       ),
     );

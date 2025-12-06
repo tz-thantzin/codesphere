@@ -28,12 +28,9 @@ class ContactSection extends StatelessWidget {
         horizontal: 24,
       ),
       child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1400),
-          child: context.isMobile
-              ? const _MobileLayout()
-              : const _DesktopLayout(),
-        ),
+        child: context.isMobile
+            ? const _MobileLayout()
+            : const _DesktopLayout(),
       ),
     );
   }

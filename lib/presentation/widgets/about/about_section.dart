@@ -92,30 +92,21 @@ class _AboutSectionState extends State<AboutSection> {
   }
 
   Widget _buildStatsGrid(BuildContext context, bool startAnimation) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: context.adaptive(24, 32)),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.zero,
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: context.adaptive(300, 350),
-          childAspectRatio: context.adaptive(
-            1.7,
-            2.2,
-            sm: 1.9,
-            md: 2.1,
-            xl: 2.3,
-          ),
-          mainAxisSpacing: 20,
-          crossAxisSpacing: 20,
-        ),
-        itemCount: stats.length,
-        itemBuilder: (context, index) {
-          if (!startAnimation) return const SizedBox.shrink();
-          return StatCard(stat: stats[index], delay: (index * 140).ms);
-        },
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.zero,
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: context.adaptive(300, 350),
+        childAspectRatio: context.adaptive(1.7, 2.2, sm: 1.9, md: 2.1, xl: 2.3),
+        mainAxisSpacing: 20,
+        crossAxisSpacing: 20,
       ),
+      itemCount: stats.length,
+      itemBuilder: (context, index) {
+        if (!startAnimation) return const SizedBox.shrink();
+        return StatCard(stat: stats[index], delay: (index * 140).ms);
+      },
     );
   }
 }
