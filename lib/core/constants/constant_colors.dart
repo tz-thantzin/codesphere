@@ -7,6 +7,8 @@ const Color kAccentPurple = Color(0xFF7B61FF);
 const Color kTextPrimary = Color(0xFFE2E8F0);
 const Color kTextSecondary = Color(0xFF94A3B8);
 const Color kPurpleGlow = Color(0xFF9D4EDD);
+const Color kLightYellow = Color(0xFFFFB800);
+const Color kDeepOrange = Color(0xFFFF9900);
 
 const LinearGradient kMainGradient = LinearGradient(
   begin: Alignment.topLeft,

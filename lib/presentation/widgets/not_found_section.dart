@@ -7,7 +7,7 @@ import '../../core/constants/constant_colors.dart';
 import '../../core/constants/constant_images.dart';
 import '../../core/utils/extensions/extensions.dart';
 import '../../core/widgets/animated_fade_slide.dart';
-import '../../core/widgets/glowing_button.dart';
+import '../../core/widgets/buttons/glowing_button.dart';
 import '../../core/widgets/typography.dart';
 
 class NotFoundSection extends StatelessWidget {

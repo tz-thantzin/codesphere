@@ -9,6 +9,12 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get hero_building_mobile_apps => 'Building Mobile Apps, Quickly and Affordably';
+
+  @override
+  String get hero_mobile_app_description => 'We specialize in crafting high-quality mobile applications with expert developers, designers, and testers. Whether you need a full-scale product team or rapid feature development, we deliver scalable, long-term mobile solutions tailored to your business needs.';
+
+  @override
   String get we_build_exceptional => 'We Build Exceptional\nMobile Experiences';
 
   @override
@@ -19,6 +25,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get get_free_quote => 'Get a Free Quote';
+
+  @override
+  String get about_us => 'About Us';
 
   @override
   String get crafting_mobile => 'Crafting the Future of Mobile,\nOne App at a Time';

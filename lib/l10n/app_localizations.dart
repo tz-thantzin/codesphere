@@ -93,6 +93,18 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @hero_building_mobile_apps.
+  ///
+  /// In en, this message translates to:
+  /// **'Building Mobile Apps, Quickly and Affordably'**
+  String get hero_building_mobile_apps;
+
+  /// No description provided for @hero_mobile_app_description.
+  ///
+  /// In en, this message translates to:
+  /// **'We specialize in crafting high-quality mobile applications with expert developers, designers, and testers. Whether you need a full-scale product team or rapid feature development, we deliver scalable, long-term mobile solutions tailored to your business needs.'**
+  String get hero_mobile_app_description;
+
   /// No description provided for @we_build_exceptional.
   ///
   /// In en, this message translates to:
@@ -116,6 +128,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Get a Free Quote'**
   String get get_free_quote;
+
+  /// No description provided for @about_us.
+  ///
+  /// In en, this message translates to:
+  /// **'About Us'**
+  String get about_us;
 
   /// No description provided for @crafting_mobile.
   ///

@@ -1,6 +1,9 @@
 // lib/core/constants/constant_sizes.dart
 
 // Spacing
+const double s2 = 2;
+const double s4 = 4;
+const double s8 = 8;
 const double s10 = 10;
 const double s14 = 14;
 const double s16 = 16;
