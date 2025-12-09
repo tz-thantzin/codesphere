@@ -132,7 +132,7 @@ abstract class AppLocalizations {
   /// No description provided for @section_title_about_us.
   ///
   /// In en, this message translates to:
-  /// **'\\ About Us \\'**
+  /// **'About Us'**
   String get section_title_about_us;
 
   /// No description provided for @about_us_main_title.
@@ -168,7 +168,7 @@ abstract class AppLocalizations {
   /// No description provided for @section_title_planning.
   ///
   /// In en, this message translates to:
-  /// **'\\ Planning \\ '**
+  /// **'Planning'**
   String get section_title_planning;
 
   /// No description provided for @process_planning_title.
@@ -183,23 +183,83 @@ abstract class AppLocalizations {
   /// **'We follow a proven agile methodology to transform your complex ideas into robust digital solutions, ensuring transparency and quality at every step of the journey.'**
   String get process_planning_description;
 
+  /// No description provided for @section_title_wwd.
+  ///
+  /// In en, this message translates to:
+  /// **'What We Do'**
+  String get section_title_wwd;
+
+  /// No description provided for @what_we_do_main_title.
+  ///
+  /// In en, this message translates to:
+  /// **'We Develop Product That People Love to Use'**
+  String get what_we_do_main_title;
+
+  /// No description provided for @what_we_do_main_description.
+  ///
+  /// In en, this message translates to:
+  /// **'At CodeSphere, we transform ideas into powerful, pixel-perfect mobile experiences. We focus on building products that are fast, reliable, and loved by real users. From crafting smooth UI/UX to engineering scalable architectures, we bring your vision to life with precision and passion.'**
+  String get what_we_do_main_description;
+
+  /// No description provided for @our_vision_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Vision'**
+  String get our_vision_title;
+
+  /// No description provided for @our_vision_description.
+  ///
+  /// In en, this message translates to:
+  /// **'To become a trusted global partner for high-quality mobile app development—creating solutions that empower businesses, delight users, and drive digital innovation.'**
+  String get our_vision_description;
+
+  /// No description provided for @our_goal_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Goal'**
+  String get our_goal_title;
+
+  /// No description provided for @our_goal_description.
+  ///
+  /// In en, this message translates to:
+  /// **'To deliver modern, impactful apps using clean architecture, performance-optimized code, and design—ensuring every product we build provides real value and long-term growth.'**
+  String get our_goal_description;
+
+  /// No description provided for @section_title_services.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get section_title_services;
+
   /// No description provided for @what_we_build.
   ///
   /// In en, this message translates to:
   /// **'What We Build'**
   String get what_we_build;
 
-  /// No description provided for @contact_title.
+  /// No description provided for @service_main_title.
   ///
   /// In en, this message translates to:
-  /// **'Let’s Build Something\nExtraordinary Together'**
-  String get contact_title;
+  /// **'Our Expertise'**
+  String get service_main_title;
 
-  /// No description provided for @contact_subtitle.
+  /// No description provided for @section_title_contact_us.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get section_title_contact_us;
+
+  /// No description provided for @contact_us_main_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s Build Something Extraordinary Together'**
+  String get contact_us_main_title;
+
+  /// No description provided for @contact_us_main_subtitle.
   ///
   /// In en, this message translates to:
   /// **'Get in Touch'**
-  String get contact_subtitle;
+  String get contact_us_main_subtitle;
 
   /// No description provided for @contact_message_sent_successful.
   ///

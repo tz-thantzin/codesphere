@@ -21,6 +21,7 @@ const double s60 = 60;
 const double s64 = 64;
 const double s70 = 70;
 const double s80 = 80;
+const double s90 = 90;
 const double s96 = 96;
 const double s100 = 100;
 const double s120 = 120;

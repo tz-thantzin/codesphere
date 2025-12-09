@@ -13,6 +13,7 @@ import '../../../core/widgets/animated_fade_slide.dart';
 import '../../../core/widgets/buttons/glowing_button.dart';
 import '../../../core/widgets/custom_toast.dart';
 import '../../../core/widgets/glass_card.dart';
+import '../../../core/widgets/title_separator.dart';
 import '../../../core/widgets/typography.dart';
 import 'contact_info.dart';
 import 'social.dart';
@@ -23,14 +24,47 @@ class ContactSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: context.adaptive(80, 160, md: 100),
-        horizontal: 24,
-      ),
-      child: Center(
-        child: context.isMobile
-            ? const _MobileLayout()
-            : const _DesktopLayout(),
+      padding: context.defaultPagePadding(),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // TITLE
+          AnimatedFadeSlide(
+            visibilityKey: 'section-title-contact-us',
+            delay: 200.ms,
+            beginY: 0.2,
+            child: Caption(
+              '\\  ${context.localization.section_title_contact_us} \\',
+              color: kWhite,
+            ),
+          ),
+
+          SizedBox(height: context.adaptive(8, 12, md: 10)),
+          AnimatedFadeSlide(
+            visibilityKey: 'contact-us-main-title',
+            delay: 400.ms,
+            beginY: 0.2,
+            child: TitleSmall(
+              context.localization.contact_us_main_title,
+              textAlign: TextAlign.left,
+            ),
+          ),
+          SizedBox(height: context.adaptive(8, 12, md: 10)),
+          AnimatedFadeSlide(
+            visibilityKey: 'contact-us-title-separator',
+            delay: 200.ms,
+            beginY: 0.2,
+            child: const TitleSeparator(),
+          ),
+          SizedBox(height: context.adaptive(40, 60)),
+
+          Center(
+            child: context.isMobile
+                ? const _MobileLayout()
+                : const _DesktopLayout(),
+          ),
+        ],
       ),
     );
   }
@@ -41,8 +75,6 @@ class _MobileLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
     children: [
-      const _Title(),
-      SizedBox(height: context.adaptive(60, 80)),
       const _ContactForm(),
       SizedBox(height: context.adaptive(80, 120)),
       const ContactInfo(),
@@ -56,58 +88,31 @@ class _MobileLayout extends StatelessWidget {
 class _DesktopLayout extends StatelessWidget {
   const _DesktopLayout();
   @override
-  Widget build(BuildContext context) => Column(
+  Widget build(BuildContext context) => Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      const _Title(),
-      SizedBox(height: context.adaptive(100, 140)),
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 6,
-            child: AnimatedFadeSlide(
-              visibilityKey: 'contact-form-desktop',
-              delay: 400.ms,
-              beginY: 0.3,
-              child: const _ContactForm(),
-            ),
-          ),
-          SizedBox(width: context.adaptive(60, 100, xl: 140)),
-          Expanded(
-            flex: 5,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const ContactInfo(),
-                SizedBox(height: context.adaptive(80, 120)),
-                const SocialRow(),
-              ],
-            ),
-          ),
-        ],
+      Expanded(
+        flex: 6,
+        child: AnimatedFadeSlide(
+          visibilityKey: 'contact-form-desktop',
+          delay: 400.ms,
+          beginY: 0.3,
+          child: const _ContactForm(),
+        ),
+      ),
+      SizedBox(width: context.adaptive(60, 100, xl: 140)),
+      Expanded(
+        flex: 5,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const ContactInfo(),
+            SizedBox(height: context.adaptive(80, 120)),
+            const SocialRow(),
+          ],
+        ),
       ),
     ],
-  );
-}
-
-class _Title extends StatelessWidget {
-  const _Title();
-  @override
-  Widget build(BuildContext context) => AnimatedFadeSlide(
-    visibilityKey: 'contact-title',
-    delay: 100.ms,
-    beginY: 0.4,
-    child: TitleLarge(
-      context.localization.contact_title,
-      textAlign: TextAlign.center,
-      shadows: [
-        Shadow(
-          color: kAccentCyan.withValues(alpha: 0.25),
-          offset: const Offset(0, 6),
-          blurRadius: 30,
-        ),
-      ],
-    ),
   );
 }
 

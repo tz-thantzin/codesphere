@@ -39,7 +39,7 @@ class _AboutSectionState extends State<AboutSection> {
             delay: 200.ms,
             beginY: 0.2,
             child: Caption(
-              context.localization.section_title_about_us,
+              '\\  ${context.localization.section_title_about_us} \\',
               color: kWhite,
             ),
           ),
@@ -102,14 +102,9 @@ class _AboutSectionState extends State<AboutSection> {
       visibilityKey: 'about-main-description',
       delay: 500.ms,
       beginY: 0.2,
-      child: Padding(
-        padding: isDesktop
-            ? EdgeInsets.zero
-            : EdgeInsets.symmetric(horizontal: context.adaptive(16, 80)),
-        child: BodyLarge(
-          context.localization.about_us_sub_description,
-          textAlign: isDesktop ? TextAlign.left : TextAlign.center,
-        ),
+      child: BodyLarge(
+        context.localization.about_us_sub_description,
+        textAlign: TextAlign.left,
       ),
     );
 

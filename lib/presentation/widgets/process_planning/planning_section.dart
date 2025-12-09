@@ -45,7 +45,7 @@ class _ProcessSectionState extends State<ProcessSection> {
               delay: 200.ms,
               beginY: 0.2,
               child: Caption(
-                context.localization.section_title_planning,
+                '\\  ${context.localization.section_title_planning} \\',
                 color: kWhite,
               ),
             ),
@@ -72,16 +72,9 @@ class _ProcessSectionState extends State<ProcessSection> {
               visibilityKey: 'planning-main-description',
               delay: 500.ms,
               beginY: 0.2,
-              child: Padding(
-                padding: isDesktop
-                    ? EdgeInsets.zero
-                    : EdgeInsets.symmetric(
-                        horizontal: context.adaptive(16, 80),
-                      ),
-                child: BodyLarge(
-                  context.localization.process_planning_description,
-                  textAlign: isDesktop ? TextAlign.left : TextAlign.center,
-                ),
+              child: BodyLarge(
+                context.localization.process_planning_description,
+                textAlign: TextAlign.left,
               ),
             ),
 
@@ -100,7 +93,7 @@ class _ProcessSectionState extends State<ProcessSection> {
                     crossAxisSpacing: context.adaptive(20, 30),
                     mainAxisSpacing: context.adaptive(20, 30),
                     mainAxisExtent: context.adaptive(
-                      330, // mobile
+                      340, // mobile
                       380, // desktop
                     ),
                   ),
