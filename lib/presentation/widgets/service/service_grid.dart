@@ -16,19 +16,16 @@ class ServicesGrid extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: serviceData.length,
       padding: EdgeInsets.zero,
-      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: context.adaptive(400, 450),
-        childAspectRatio: context.adaptive(
-          0.8,
-          1.2,
-          sm: 0.95,
-          md: 1.1,
-          xl: 1.3,
+      itemCount: serviceData.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: context.adaptive(1, 3, md: 2, sm: 1),
+        crossAxisSpacing: context.adaptive(20, 30),
+        mainAxisSpacing: context.adaptive(20, 30),
+        mainAxisExtent: context.adaptive(
+          300, // mobile
+          340, // desktop
         ),
-        crossAxisSpacing: spacing,
-        mainAxisSpacing: spacing,
       ),
       itemBuilder: (context, index) {
         final service = serviceData[index];

@@ -1,9 +1,11 @@
-import 'package:codesphere/core/constants/constant_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../models/process_item.dart';
 import '../../models/social_link.dart';
 import '../../models/stat.dart';
+import 'constant_colors.dart';
+import 'constant_images.dart';
 
 final List<Map<String, dynamic>> serviceData = [
   {
@@ -88,6 +90,33 @@ const List<SocialLink> socialLinks = [
     icon: FontAwesomeIcons.code,
     url: "https://devthantzin.com",
     brandColor: kPortfolio,
+  ),
+];
+
+final List<ProcessItem> processes = [
+  ProcessItem(
+    title: "Research",
+    iconPath: kResearchIcon,
+    description:
+        "We analyze market trends, user needs, and technical requirements to build a solid foundation for your project.",
+  ),
+  ProcessItem(
+    title: "Design",
+    iconPath: kDesignIcon,
+    description:
+        "Our team prototypes intuitive interfaces and engaging user experiences that align perfectly with your brand identity.",
+  ),
+  ProcessItem(
+    title: "Develop",
+    iconPath: kDevelopIcon,
+    description:
+        "We write clean, scalable, and efficient code using cutting-edge technologies to bring the designs to life.",
+  ),
+  ProcessItem(
+    title: "Test",
+    iconPath: kTestIcon,
+    description:
+        "Rigorous quality assurance ensures high performance, security, and a bug-free experience across all devices.",
   ),
 ];
 

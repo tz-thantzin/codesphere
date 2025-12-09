@@ -93,6 +93,18 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @hero_building_mobile_apps.
+  ///
+  /// In en, this message translates to:
+  /// **'Building Mobile Apps, Quickly and Affordably'**
+  String get hero_building_mobile_apps;
+
+  /// No description provided for @hero_mobile_app_description.
+  ///
+  /// In en, this message translates to:
+  /// **'We specialize in crafting high-quality mobile applications with expert developers, designers, and testers. Whether you need a full-scale product team or rapid feature development, we deliver scalable, long-term mobile solutions tailored to your business needs.'**
+  String get hero_mobile_app_description;
+
   /// No description provided for @we_build_exceptional.
   ///
   /// In en, this message translates to:
@@ -117,17 +129,107 @@ abstract class AppLocalizations {
   /// **'Get a Free Quote'**
   String get get_free_quote;
 
-  /// No description provided for @crafting_mobile.
+  /// No description provided for @section_title_about_us.
+  ///
+  /// In en, this message translates to:
+  /// **'About Us'**
+  String get section_title_about_us;
+
+  /// No description provided for @about_us_main_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Innovative IT Solutions Backed by a Decade of Expertise'**
+  String get about_us_main_title;
+
+  /// No description provided for @about_us_main_description.
+  ///
+  /// In en, this message translates to:
+  /// **'At CodeSphere, we believe technology should not only solve problems — it should create possibilities. With over 10 years of industry experience, we deliver IT solutions that are fast, secure, and tailored to the unique needs of every business we work with.\nWhether you\'re a startup validating an idea or an enterprise optimizing performance, our solutions are built to scale with your growth.'**
+  String get about_us_main_description;
+
+  /// No description provided for @about_us_sub_title.
   ///
   /// In en, this message translates to:
   /// **'Crafting the Future of Mobile,\nOne App at a Time'**
-  String get crafting_mobile;
+  String get about_us_sub_title;
 
-  /// No description provided for @about_codesphere_description.
+  /// No description provided for @about_us_sub_description.
   ///
   /// In en, this message translates to:
-  /// **'At CodeSphere, we don’t just build apps — we architect digital experiences\nthat scale, perform, and delight. With experience in Flutter, Swift, Kotlin\n and modern UI engineering, we deliver reliable and beautiful solutions.'**
-  String get about_codesphere_description;
+  /// **'At CodeSphere, we don’t just build apps — we architect digital experiences\nthat scale, perform, and delight. With experience in Flutter, Swift, Kotlin\nand modern UI engineering, we deliver reliable and beautiful solutions.'**
+  String get about_us_sub_description;
+
+  /// No description provided for @about_us_highlights.
+  ///
+  /// In en, this message translates to:
+  /// **'High Quality, Fast Delivery, 24/7 Support, Fair Prices'**
+  String get about_us_highlights;
+
+  /// No description provided for @section_title_planning.
+  ///
+  /// In en, this message translates to:
+  /// **'Planning'**
+  String get section_title_planning;
+
+  /// No description provided for @process_planning_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Process'**
+  String get process_planning_title;
+
+  /// No description provided for @process_planning_description.
+  ///
+  /// In en, this message translates to:
+  /// **'We follow a proven agile methodology to transform your complex ideas into robust digital solutions, ensuring transparency and quality at every step of the journey.'**
+  String get process_planning_description;
+
+  /// No description provided for @section_title_wwd.
+  ///
+  /// In en, this message translates to:
+  /// **'What We Do'**
+  String get section_title_wwd;
+
+  /// No description provided for @what_we_do_main_title.
+  ///
+  /// In en, this message translates to:
+  /// **'We Develop Product That People Love to Use'**
+  String get what_we_do_main_title;
+
+  /// No description provided for @what_we_do_main_description.
+  ///
+  /// In en, this message translates to:
+  /// **'At CodeSphere, we transform ideas into powerful, pixel-perfect mobile experiences. We focus on building products that are fast, reliable, and loved by real users. From crafting smooth UI/UX to engineering scalable architectures, we bring your vision to life with precision and passion.'**
+  String get what_we_do_main_description;
+
+  /// No description provided for @our_vision_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Vision'**
+  String get our_vision_title;
+
+  /// No description provided for @our_vision_description.
+  ///
+  /// In en, this message translates to:
+  /// **'To become a trusted global partner for high-quality mobile app development—creating solutions that empower businesses, delight users, and drive digital innovation.'**
+  String get our_vision_description;
+
+  /// No description provided for @our_goal_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Goal'**
+  String get our_goal_title;
+
+  /// No description provided for @our_goal_description.
+  ///
+  /// In en, this message translates to:
+  /// **'To deliver modern, impactful apps using clean architecture, performance-optimized code, and design—ensuring every product we build provides real value and long-term growth.'**
+  String get our_goal_description;
+
+  /// No description provided for @section_title_services.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get section_title_services;
 
   /// No description provided for @what_we_build.
   ///
@@ -135,17 +237,29 @@ abstract class AppLocalizations {
   /// **'What We Build'**
   String get what_we_build;
 
-  /// No description provided for @contact_title.
+  /// No description provided for @service_main_title.
   ///
   /// In en, this message translates to:
-  /// **'Let’s Build Something\nExtraordinary Together'**
-  String get contact_title;
+  /// **'Our Expertise'**
+  String get service_main_title;
 
-  /// No description provided for @contact_subtitle.
+  /// No description provided for @section_title_contact_us.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get section_title_contact_us;
+
+  /// No description provided for @contact_us_main_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s Build Something Extraordinary Together'**
+  String get contact_us_main_title;
+
+  /// No description provided for @contact_us_main_subtitle.
   ///
   /// In en, this message translates to:
   /// **'Get in Touch'**
-  String get contact_subtitle;
+  String get contact_us_main_subtitle;
 
   /// No description provided for @contact_message_sent_successful.
   ///

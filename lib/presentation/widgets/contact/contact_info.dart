@@ -32,7 +32,7 @@ class ContactInfo extends StatelessWidget {
         children: [
           // Title
           SubtitleMedium(
-            context.localization.contact_subtitle,
+            context.localization.contact_us_main_subtitle,
             color: kTextPrimary,
           ),
 

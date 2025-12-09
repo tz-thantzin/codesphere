@@ -7,7 +7,8 @@ import '../../core/constants/constant_colors.dart';
 import '../../core/constants/constant_images.dart';
 import '../../core/utils/extensions/extensions.dart';
 import '../../core/widgets/animated_fade_slide.dart';
-import '../../core/widgets/glowing_button.dart';
+import '../../core/widgets/buttons/glowing_button.dart';
+import '../../core/widgets/buttons/gradient_button.dart';
 import '../../core/widgets/typography.dart';
 
 class NotFoundSection extends StatelessWidget {
@@ -180,14 +181,10 @@ class NotFoundSection extends StatelessWidget {
                     beginY: 0.2,
                     visibleFraction: 0.1,
                     curve: Curves.easeOutBack,
-                    child: GlowingButton(
+                    child: GradientButton(
                       text: context.localization.go_back_home,
                       onPressed: onGoHome,
-                      filled: true,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: context.isMobile ? 32 : 40,
-                        vertical: context.isMobile ? 16 : 20,
-                      ),
+                      gradientColors: const [kLightYellow, kDeepOrange],
                     ),
                   ),
                 ],

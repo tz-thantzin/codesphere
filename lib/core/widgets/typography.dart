@@ -19,3 +19,4 @@ part 'text/subtitle_medium.dart';
 part 'text/title_huge.dart';
 part 'text/title_large.dart';
 part 'text/title_medium.dart';
+part 'text/title_small.dart';

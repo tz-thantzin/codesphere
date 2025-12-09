@@ -39,12 +39,10 @@ extension LayoutAdapter on BuildContext {
     double additions = 0,
     double subs = 0,
   }) {
-    // Assuming screenHeight is available via context_ex.dart
     return (screenHeight - (subs) + (additions)) * fraction;
   }
 
   double assignWidth(double fraction, {double additions = 0, double subs = 0}) {
-    // Assuming screenWidth is available via context_ex.dart
     return (screenWidth - (subs) + (additions)) * fraction;
   }
 
@@ -57,6 +55,5 @@ extension LayoutAdapter on BuildContext {
   /// desktop >= 1100
   bool get isDesktop => MediaQuery.of(this).size.width >= 1100;
 
-  // Custom getter from user's provided snippet
-  double get appBarHeight => 60;
+  double get appBarHeight => isMobile ? 60 : 100;
 }

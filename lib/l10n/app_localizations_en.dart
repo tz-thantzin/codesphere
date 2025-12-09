@@ -9,6 +9,12 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get hero_building_mobile_apps => 'Building Mobile Apps, Quickly and Affordably';
+
+  @override
+  String get hero_mobile_app_description => 'We specialize in crafting high-quality mobile applications with expert developers, designers, and testers. Whether you need a full-scale product team or rapid feature development, we deliver scalable, long-term mobile solutions tailored to your business needs.';
+
+  @override
   String get we_build_exceptional => 'We Build Exceptional\nMobile Experiences';
 
   @override
@@ -21,19 +27,70 @@ class AppLocalizationsEn extends AppLocalizations {
   String get get_free_quote => 'Get a Free Quote';
 
   @override
-  String get crafting_mobile => 'Crafting the Future of Mobile,\nOne App at a Time';
+  String get section_title_about_us => 'About Us';
 
   @override
-  String get about_codesphere_description => 'At CodeSphere, we don’t just build apps — we architect digital experiences\nthat scale, perform, and delight. With experience in Flutter, Swift, Kotlin\n and modern UI engineering, we deliver reliable and beautiful solutions.';
+  String get about_us_main_title => 'Innovative IT Solutions Backed by a Decade of Expertise';
+
+  @override
+  String get about_us_main_description => 'At CodeSphere, we believe technology should not only solve problems — it should create possibilities. With over 10 years of industry experience, we deliver IT solutions that are fast, secure, and tailored to the unique needs of every business we work with.\nWhether you\'re a startup validating an idea or an enterprise optimizing performance, our solutions are built to scale with your growth.';
+
+  @override
+  String get about_us_sub_title => 'Crafting the Future of Mobile,\nOne App at a Time';
+
+  @override
+  String get about_us_sub_description => 'At CodeSphere, we don’t just build apps — we architect digital experiences\nthat scale, perform, and delight. With experience in Flutter, Swift, Kotlin\nand modern UI engineering, we deliver reliable and beautiful solutions.';
+
+  @override
+  String get about_us_highlights => 'High Quality, Fast Delivery, 24/7 Support, Fair Prices';
+
+  @override
+  String get section_title_planning => 'Planning';
+
+  @override
+  String get process_planning_title => 'Our Process';
+
+  @override
+  String get process_planning_description => 'We follow a proven agile methodology to transform your complex ideas into robust digital solutions, ensuring transparency and quality at every step of the journey.';
+
+  @override
+  String get section_title_wwd => 'What We Do';
+
+  @override
+  String get what_we_do_main_title => 'We Develop Product That People Love to Use';
+
+  @override
+  String get what_we_do_main_description => 'At CodeSphere, we transform ideas into powerful, pixel-perfect mobile experiences. We focus on building products that are fast, reliable, and loved by real users. From crafting smooth UI/UX to engineering scalable architectures, we bring your vision to life with precision and passion.';
+
+  @override
+  String get our_vision_title => 'Our Vision';
+
+  @override
+  String get our_vision_description => 'To become a trusted global partner for high-quality mobile app development—creating solutions that empower businesses, delight users, and drive digital innovation.';
+
+  @override
+  String get our_goal_title => 'Our Goal';
+
+  @override
+  String get our_goal_description => 'To deliver modern, impactful apps using clean architecture, performance-optimized code, and design—ensuring every product we build provides real value and long-term growth.';
+
+  @override
+  String get section_title_services => 'Services';
 
   @override
   String get what_we_build => 'What We Build';
 
   @override
-  String get contact_title => 'Let’s Build Something\nExtraordinary Together';
+  String get service_main_title => 'Our Expertise';
 
   @override
-  String get contact_subtitle => 'Get in Touch';
+  String get section_title_contact_us => 'Contact Us';
+
+  @override
+  String get contact_us_main_title => 'Let’s Build Something Extraordinary Together';
+
+  @override
+  String get contact_us_main_subtitle => 'Get in Touch';
 
   @override
   String get contact_message_sent_successful => 'Message sent successfully! We\'ll contact you soon.';
