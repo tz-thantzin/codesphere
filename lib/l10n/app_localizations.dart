@@ -129,23 +129,59 @@ abstract class AppLocalizations {
   /// **'Get a Free Quote'**
   String get get_free_quote;
 
-  /// No description provided for @about_us.
+  /// No description provided for @section_title_about_us.
   ///
   /// In en, this message translates to:
-  /// **'About Us'**
-  String get about_us;
+  /// **'\\ About Us \\'**
+  String get section_title_about_us;
 
-  /// No description provided for @crafting_mobile.
+  /// No description provided for @about_us_main_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Innovative IT Solutions Backed by a Decade of Expertise'**
+  String get about_us_main_title;
+
+  /// No description provided for @about_us_main_description.
+  ///
+  /// In en, this message translates to:
+  /// **'At CodeSphere, we believe technology should not only solve problems — it should create possibilities. With over 10 years of industry experience, we deliver IT solutions that are fast, secure, and tailored to the unique needs of every business we work with.\nWhether you\'re a startup validating an idea or an enterprise optimizing performance, our solutions are built to scale with your growth.'**
+  String get about_us_main_description;
+
+  /// No description provided for @about_us_sub_title.
   ///
   /// In en, this message translates to:
   /// **'Crafting the Future of Mobile,\nOne App at a Time'**
-  String get crafting_mobile;
+  String get about_us_sub_title;
 
-  /// No description provided for @about_codesphere_description.
+  /// No description provided for @about_us_sub_description.
   ///
   /// In en, this message translates to:
-  /// **'At CodeSphere, we don’t just build apps — we architect digital experiences\nthat scale, perform, and delight. With experience in Flutter, Swift, Kotlin\n and modern UI engineering, we deliver reliable and beautiful solutions.'**
-  String get about_codesphere_description;
+  /// **'At CodeSphere, we don’t just build apps — we architect digital experiences\nthat scale, perform, and delight. With experience in Flutter, Swift, Kotlin\nand modern UI engineering, we deliver reliable and beautiful solutions.'**
+  String get about_us_sub_description;
+
+  /// No description provided for @about_us_highlights.
+  ///
+  /// In en, this message translates to:
+  /// **'High Quality, Fast Delivery, 24/7 Support, Fair Prices'**
+  String get about_us_highlights;
+
+  /// No description provided for @section_title_planning.
+  ///
+  /// In en, this message translates to:
+  /// **'\\ Planning \\ '**
+  String get section_title_planning;
+
+  /// No description provided for @process_planning_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Process'**
+  String get process_planning_title;
+
+  /// No description provided for @process_planning_description.
+  ///
+  /// In en, this message translates to:
+  /// **'We follow a proven agile methodology to transform your complex ideas into robust digital solutions, ensuring transparency and quality at every step of the journey.'**
+  String get process_planning_description;
 
   /// No description provided for @what_we_build.
   ///

@@ -27,13 +27,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get get_free_quote => 'Get a Free Quote';
 
   @override
-  String get about_us => 'About Us';
+  String get section_title_about_us => '\\ About Us \\';
 
   @override
-  String get crafting_mobile => 'Crafting the Future of Mobile,\nOne App at a Time';
+  String get about_us_main_title => 'Innovative IT Solutions Backed by a Decade of Expertise';
 
   @override
-  String get about_codesphere_description => 'At CodeSphere, we don’t just build apps — we architect digital experiences\nthat scale, perform, and delight. With experience in Flutter, Swift, Kotlin\n and modern UI engineering, we deliver reliable and beautiful solutions.';
+  String get about_us_main_description => 'At CodeSphere, we believe technology should not only solve problems — it should create possibilities. With over 10 years of industry experience, we deliver IT solutions that are fast, secure, and tailored to the unique needs of every business we work with.\nWhether you\'re a startup validating an idea or an enterprise optimizing performance, our solutions are built to scale with your growth.';
+
+  @override
+  String get about_us_sub_title => 'Crafting the Future of Mobile,\nOne App at a Time';
+
+  @override
+  String get about_us_sub_description => 'At CodeSphere, we don’t just build apps — we architect digital experiences\nthat scale, perform, and delight. With experience in Flutter, Swift, Kotlin\nand modern UI engineering, we deliver reliable and beautiful solutions.';
+
+  @override
+  String get about_us_highlights => 'High Quality, Fast Delivery, 24/7 Support, Fair Prices';
+
+  @override
+  String get section_title_planning => '\\ Planning \\ ';
+
+  @override
+  String get process_planning_title => 'Our Process';
+
+  @override
+  String get process_planning_description => 'We follow a proven agile methodology to transform your complex ideas into robust digital solutions, ensuring transparency and quality at every step of the journey.';
 
   @override
   String get what_we_build => 'What We Build';

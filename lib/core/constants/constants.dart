@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 final GlobalKey aboutSectionKey = GlobalKey();
+final GlobalKey planningSectionKey = GlobalKey();
 final GlobalKey servicesSectionKey = GlobalKey();
 final GlobalKey contactSectionKey = GlobalKey();
 

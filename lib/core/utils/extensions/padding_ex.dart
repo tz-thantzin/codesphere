@@ -12,4 +12,13 @@ extension PaddingEX on BuildContext {
       vertical: adaptive(padding * 0.8, padding),
     );
   }
+
+  EdgeInsetsGeometry appbarPadding() {
+    final bool isDesktop = this.isDesktop;
+    final double padding = isDesktop ? s50 : s20;
+    return EdgeInsets.symmetric(
+      horizontal: adaptive(padding * 0.8, padding),
+      vertical: adaptive(20, 28),
+    );
+  }
 }

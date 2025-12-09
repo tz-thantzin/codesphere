@@ -1,12 +1,12 @@
 //lib/presentation/pages/landing_page.dart
 import 'dart:js_interop';
 
-import 'package:codesphere/core/constants/constant_images.dart';
 import 'package:codesphere/core/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:web/web.dart' as web;
 
+import '../../core/constants/constant_images.dart';
 import '../../core/constants/constants.dart';
 import '../../core/services/analytics_service.dart';
 import '../../core/widgets/animated_background.dart';
@@ -14,6 +14,7 @@ import '../widgets/about/about_section.dart';
 import '../widgets/contact/contact_section.dart';
 import '../widgets/footer_section.dart';
 import '../widgets/hero_section.dart';
+import '../widgets/process_planning/planning_section.dart';
 import '../widgets/service/services_section.dart';
 
 class LandingPage extends StatefulWidget {
@@ -80,6 +81,7 @@ class _LandingPageState extends State<LandingPage> {
                   onGetQuote: () => _navigate('contact'),
                 ),
                 AboutSection(key: aboutSectionKey),
+                ProcessSection(key: planningSectionKey),
                 ServicesSection(key: servicesSectionKey),
                 ContactSection(key: contactSectionKey),
                 const Footer(),
@@ -89,19 +91,13 @@ class _LandingPageState extends State<LandingPage> {
           Positioned(
             top: 0,
             left: 0,
-            right: context.isMobile ? 0 : null,
-            child: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: context.adaptive(24, 40),
-                  vertical: context.adaptive(20, 28),
-                ),
-                child: Image.asset(
-                  kLogoText,
-                  height: context.adaptive(32, 48),
-                  width: context.adaptive(120, 200),
-                  fit: BoxFit.contain,
-                ),
+            child: Padding(
+              padding: context.appbarPadding(),
+              child: Image.asset(
+                kLogoText,
+                height: context.adaptive(32, 48),
+                width: context.adaptive(120, 200),
+                fit: BoxFit.contain,
               ),
             ),
           ),

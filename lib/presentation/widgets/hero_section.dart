@@ -1,5 +1,5 @@
 import 'package:codesphere/core/constants/constant_colors.dart';
-import 'package:codesphere/core/widgets/animated_image.dart';
+import 'package:codesphere/core/widgets/animated_blur_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
