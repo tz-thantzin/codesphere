@@ -2,13 +2,13 @@
 import 'dart:async';
 import 'dart:js_interop';
 
-import 'package:codesphere/core/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:web/web.dart' as web;
 
 import '../../core/constants/constants.dart';
 import '../../core/services/analytics_service.dart';
+import '../../core/utils/extensions/layout_adapter_ex.dart';
 import '../../core/widgets/animated_background.dart';
 import '../widgets/about/about_section.dart';
 import '../widgets/contact/contact_section.dart';

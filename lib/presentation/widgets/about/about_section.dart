@@ -1,14 +1,14 @@
-import 'package:codesphere/core/constants/constant_colors.dart';
-import 'package:codesphere/core/widgets/animated_fade_slide.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import '../../../core/constants/constant_colors.dart';
 import '../../../core/constants/constant_data.dart';
 import '../../../core/constants/constant_images.dart';
 import '../../../core/constants/constant_sizes.dart';
 import '../../../core/utils/extensions/extensions.dart';
 import '../../../core/widgets/animated_blur_widget.dart';
+import '../../../core/widgets/animated_fade_slide.dart';
 import '../../../core/widgets/title_separator.dart';
 import '../../../core/widgets/typography.dart';
 import 'stat_card.dart';

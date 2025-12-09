@@ -1,7 +1,8 @@
-import 'package:codesphere/core/constants/constant_colors.dart';
-import 'package:codesphere/core/constants/constant_sizes.dart';
-import 'package:codesphere/core/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/constant_colors.dart';
+import '../constants/constant_sizes.dart';
+import '../utils/extensions/extensions.dart';
 
 class TitleSeparator extends StatelessWidget {
   final Color color;

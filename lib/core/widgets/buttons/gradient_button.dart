@@ -1,7 +1,8 @@
-import 'package:codesphere/core/constants/constant_colors.dart';
-import 'package:codesphere/core/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+
+import '../../constants/constant_colors.dart';
+import '../../utils/extensions/extensions.dart';
 
 class GradientButton extends StatefulWidget {
   final String text;

@@ -1,11 +1,11 @@
 // lib/presentation/widgets/navbar_section.dart
-import 'package:codesphere/core/widgets/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../core/constants/constant_colors.dart';
 import '../../core/constants/constant_images.dart';
 import '../../core/utils/extensions/extensions.dart';
+import '../../core/widgets/typography.dart';
 
 class NavbarSection extends StatelessWidget {
   final void Function(String) onNavigate;

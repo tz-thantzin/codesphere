@@ -1,10 +1,10 @@
-import 'package:codesphere/core/constants/constant_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../models/process_item.dart';
 import '../../models/social_link.dart';
 import '../../models/stat.dart';
+import 'constant_colors.dart';
 import 'constant_images.dart';
 
 final List<Map<String, dynamic>> serviceData = [
