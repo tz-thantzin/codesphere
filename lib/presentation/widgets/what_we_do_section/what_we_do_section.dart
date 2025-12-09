@@ -1,5 +1,4 @@
 // lib/presentation/widgets/what_we_do_section/what_we_do_section.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:visibility_detector/visibility_detector.dart';

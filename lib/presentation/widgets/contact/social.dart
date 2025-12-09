@@ -18,7 +18,7 @@ class SocialRow extends StatelessWidget {
       visibilityKey: 'social-row',
       delay: 600.ms,
       child: Wrap(
-        spacing: 28,
+        spacing: 20,
         runSpacing: 20,
         alignment: WrapAlignment.center,
         children: socialLinks

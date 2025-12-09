@@ -80,7 +80,7 @@ class _ProcessSectionState extends State<ProcessSection> {
 
             SizedBox(height: context.adaptive(40, 60)),
 
-            // --- Process Grid ---
+            // Process Grid
             LayoutBuilder(
               builder: (_, constraints) {
                 return GridView.builder(

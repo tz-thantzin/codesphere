@@ -76,8 +76,8 @@ class NavbarSection extends StatelessWidget {
       barrierDismissible: true,
       barrierLabel: "Menu",
       transitionDuration: 400.ms,
-      pageBuilder: (_, __, ___) => const SizedBox.shrink(),
-      transitionBuilder: (ctx, anim, _, __) {
+      pageBuilder: (_, _, _) => const SizedBox.shrink(),
+      transitionBuilder: (ctx, anim, _, _) {
         return SlideTransition(
           position: Tween(
             begin: const Offset(1, 0),

@@ -20,7 +20,7 @@ class OurServiceSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // TITLE
+          // Section Title
           AnimatedFadeSlide(
             visibilityKey: 'section-title-services',
             delay: 200.ms,
@@ -32,6 +32,8 @@ class OurServiceSection extends StatelessWidget {
           ),
 
           SizedBox(height: context.adaptive(8, 12, md: 10)),
+
+          // Main Title
           AnimatedFadeSlide(
             visibilityKey: 'service-main-title',
             delay: 400.ms,
@@ -42,6 +44,8 @@ class OurServiceSection extends StatelessWidget {
             ),
           ),
           SizedBox(height: context.adaptive(8, 12, md: 10)),
+
+          // Title Separator
           AnimatedFadeSlide(
             visibilityKey: 'planning-title-separator',
             delay: 200.ms,

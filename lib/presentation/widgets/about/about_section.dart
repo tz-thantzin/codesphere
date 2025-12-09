@@ -33,7 +33,7 @@ class _AboutSectionState extends State<AboutSection> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title
+          // Section Title
           AnimatedFadeSlide(
             visibilityKey: 'section-title-about',
             delay: 200.ms,
@@ -43,8 +43,9 @@ class _AboutSectionState extends State<AboutSection> {
               color: kWhite,
             ),
           ),
-
           SizedBox(height: context.adaptive(8, 12, md: 10)),
+
+          // Main Title
           AnimatedFadeSlide(
             visibilityKey: 'about-main-title',
             delay: 400.ms,
@@ -54,8 +55,9 @@ class _AboutSectionState extends State<AboutSection> {
               textAlign: TextAlign.left,
             ),
           ),
-
           SizedBox(height: context.adaptive(8, 12, md: 10)),
+
+          // Title Separator
           AnimatedFadeSlide(
             visibilityKey: 'about-title-separator',
             delay: 200.ms,

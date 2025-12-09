@@ -29,7 +29,7 @@ class ContactSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // TITLE
+          // Section Title
           AnimatedFadeSlide(
             visibilityKey: 'section-title-contact-us',
             delay: 200.ms,
@@ -41,6 +41,8 @@ class ContactSection extends StatelessWidget {
           ),
 
           SizedBox(height: context.adaptive(8, 12, md: 10)),
+
+          // Main Title
           AnimatedFadeSlide(
             visibilityKey: 'contact-us-main-title',
             delay: 400.ms,
@@ -51,6 +53,8 @@ class ContactSection extends StatelessWidget {
             ),
           ),
           SizedBox(height: context.adaptive(8, 12, md: 10)),
+
+          // Title Separator
           AnimatedFadeSlide(
             visibilityKey: 'contact-us-title-separator',
             delay: 200.ms,

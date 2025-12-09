@@ -8,7 +8,7 @@ extension ContextX on BuildContext {
   double get screenWidth => MediaQuery.of(this).size.width;
   double get screenHeight => MediaQuery.of(this).size.height;
   double get sectionHeight =>
-      MediaQuery.of(this).size.height - autoAdaptive(60);
+      MediaQuery.of(this).size.height - (isMobile ? 60 : 100);
   AppLocalizations get localization => AppLocalizations.of(this)!;
 
   double percentWidth(double percent) => screenWidth * (percent / 100);

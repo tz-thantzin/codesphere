@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:js_interop';
 
+import 'package:codesphere/core/utils/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:web/web.dart' as web;
@@ -84,25 +85,26 @@ class _LandingPageState extends State<LandingPage> {
       body: Stack(
         children: [
           const AnimatedBackground(),
-          SingleChildScrollView(
-            controller: _scrollController,
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.only(top: 120),
-            child: Column(
-              children: [
-                const SizedBox(height: 60),
-                HeroSection(
-                  key: heroSectionKey,
-                  onViewWork: () => _navigateTo('services'),
-                  onGetQuote: () => _navigateTo('contact'),
-                ),
-                AboutSection(key: aboutSectionKey),
-                ProcessSection(key: planningSectionKey),
-                WhatWeDoSection(key: whatWeDoSectionKey),
-                OurServiceSection(key: servicesSectionKey),
-                ContactSection(key: contactSectionKey),
-                const Footer(),
-              ],
+          Container(
+            margin: EdgeInsets.only(top: context.appBarHeight),
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  HeroSection(
+                    key: heroSectionKey,
+                    onViewWork: () => _navigateTo('services'),
+                    onGetQuote: () => _navigateTo('contact'),
+                  ),
+                  AboutSection(key: aboutSectionKey),
+                  ProcessSection(key: planningSectionKey),
+                  WhatWeDoSection(key: whatWeDoSectionKey),
+                  OurServiceSection(key: servicesSectionKey),
+                  ContactSection(key: contactSectionKey),
+                  const Footer(),
+                ],
+              ),
             ),
           ),
 

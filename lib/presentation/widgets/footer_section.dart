@@ -54,11 +54,7 @@ class _DesktopLayout extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        _Logo(),
-        _Copyright(),
-        _ContactInfo(), // ← Replaced Social Icons
-      ],
+      children: [_Logo(), _Copyright(), _ContactInfo()],
     );
   }
 }
@@ -80,7 +76,6 @@ class _MobileLayout extends StatelessWidget {
   }
 }
 
-// ====================== LOGO ======================
 class _Logo extends StatelessWidget {
   const _Logo();
 
@@ -96,7 +91,6 @@ class _Logo extends StatelessWidget {
   }
 }
 
-// ====================== COPYRIGHT ======================
 class _Copyright extends StatelessWidget {
   const _Copyright();
 
@@ -124,7 +118,6 @@ class _Copyright extends StatelessWidget {
   }
 }
 
-// CONTACT & LOCATION – Fixed forever
 class _ContactInfo extends StatelessWidget {
   const _ContactInfo();
 
@@ -163,7 +156,6 @@ class _ContactInfo extends StatelessWidget {
   }
 }
 
-// FINAL VERSION – NO OVERFLOW, NO LAYOUT SHIFT
 class _ContactRow extends StatefulWidget {
   final IconData icon;
   final String text;
@@ -194,7 +186,6 @@ class _ContactRowState extends State<_ContactRow> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Fixed-size icon (prevents shift)
               SizedBox(
                 width: 28,
                 child: Icon(
@@ -206,7 +197,6 @@ class _ContactRowState extends State<_ContactRow> {
 
               const SizedBox(width: 10),
 
-              // This is the magic: Flexible + softWrap = no overflow ever
               Flexible(
                 child: SelectableText(
                   widget.text,
@@ -216,7 +206,7 @@ class _ContactRowState extends State<_ContactRow> {
                     fontWeight: FontWeight.w500,
                     height: 1.4,
                   ),
-                  maxLines: 2, // safe fallback
+                  maxLines: 2,
                 ),
               ),
             ],

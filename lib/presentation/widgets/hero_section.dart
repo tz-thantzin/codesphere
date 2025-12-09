@@ -29,21 +29,23 @@ class HeroSection extends StatelessWidget {
       padding: context.defaultPagePadding(),
       alignment: Alignment.topCenter,
       child: isDesktop
-          ? Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: _HeroTextContent(
-                    onBuildTeam: onViewWork,
-                    isMobile: false,
+          ? Container(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: _HeroTextContent(
+                      onBuildTeam: onViewWork,
+                      isMobile: false,
+                    ),
                   ),
-                ),
-                const Spacer(flex: 1),
+                  const Spacer(flex: 1),
 
-                Expanded(flex: 5, child: _HeroImage(isMobile: false)),
-              ],
+                  Expanded(flex: 5, child: _HeroImage(isMobile: false)),
+                ],
+              ),
             )
           : Column(
               mainAxisSize: MainAxisSize.min,
@@ -109,7 +111,7 @@ class _HeroTextContent extends StatelessWidget {
           beginY: 0.2,
           visibleFraction: 0.1,
           curve: Curves.easeOutBack,
-          child: _BuildHeroButton(
+          child: _HeroButton(
             text: context.localization.view_our_work,
             onPressed: onBuildTeam,
           ),
@@ -119,11 +121,11 @@ class _HeroTextContent extends StatelessWidget {
   }
 }
 
-class _BuildHeroButton extends StatelessWidget {
+class _HeroButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const _BuildHeroButton({required this.text, required this.onPressed});
+  const _HeroButton({required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
