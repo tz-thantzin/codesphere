@@ -1,6 +1,7 @@
 // lib/presentation/widgets/footer_section.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/constants/constant_colors.dart';
@@ -85,6 +86,7 @@ class _Logo extends StatelessWidget {
       context.localization.codesphere,
       textAlign: TextAlign.center,
       fontSize: context.adaptive(ts28, ts48),
+      fontFamily: GoogleFonts.saira().fontFamily,
       gradient: kButtonGradient,
       shimmer: true,
     );

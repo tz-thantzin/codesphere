@@ -9,6 +9,7 @@ class GradientText extends StatelessWidget {
   final double height;
   final double? letterSpacing;
   final Gradient? gradient;
+  final String? fontFamily;
 
   const GradientText(
     this.text, {
@@ -20,6 +21,7 @@ class GradientText extends StatelessWidget {
     this.height = 1.2,
     this.letterSpacing,
     this.gradient,
+    this.fontFamily,
   });
 
   static final _defaultGradient = const LinearGradient(
@@ -40,6 +42,7 @@ class GradientText extends StatelessWidget {
       style: TextStyle(
         fontSize: fontSize,
         fontWeight: fontWeight,
+        fontFamily: fontFamily,
         height: height,
         letterSpacing:
             letterSpacing ??
