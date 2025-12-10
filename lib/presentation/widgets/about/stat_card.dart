@@ -5,10 +5,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../core/utils/extensions/layout_adapter_ex.dart';
 import '../../../core/widgets/glass_card.dart';
 import '../../../core/widgets/typography.dart';
-import '../../../models/stat.dart';
+import '../../../models/stat_model.dart';
 
 class StatCard extends StatelessWidget {
-  final Stat stat;
+  final StatModel stat;
   final Duration delay;
 
   const StatCard({super.key, required this.stat, this.delay = Duration.zero});
@@ -67,14 +67,14 @@ class StatCard extends StatelessWidget {
         .slideY(begin: 0.35, curve: Curves.easeOutCubic);
   }
 
-  double _parseNumericValue(Stat stat) {
+  double _parseNumericValue(StatModel stat) {
     return double.tryParse(stat.number.replaceAll(RegExp(r'[^0-9]'), '')) ?? 0;
   }
 }
 
 class AnimatedStatNumber extends StatelessWidget {
   final double value;
-  final Stat stat;
+  final StatModel stat;
   final double fontSize;
 
   const AnimatedStatNumber({
@@ -118,7 +118,7 @@ class StaticStatNumber extends StatelessWidget {
   }
 }
 
-String _formatNumber(int value, Stat stat) {
+String _formatNumber(int value, StatModel stat) {
   if (stat.number.contains('%')) return '$value%';
   if (stat.number.contains('+')) return '$value+';
   if (stat.number.contains('K')) return '${value}K';

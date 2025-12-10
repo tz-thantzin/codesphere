@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/di/providers.dart';
 import '../../core/services/analytics_service.dart';
 import '../../domain/usecases/contact_message.dart';
-import '../../models/contact.dart';
+import '../../models/contact_model.dart';
 
 class ContactState extends Equatable {
   final bool isLoading;
@@ -55,7 +55,7 @@ class ContactViewModel extends Notifier<ContactState> {
     state = state.copyWith(isLoading: true, error: null);
 
     try {
-      final contact = Contact(
+      final contact = ContactModel(
         name: name,
         email: email,
         phone: phone,

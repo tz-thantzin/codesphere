@@ -1,121 +1,154 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../core/constants/constant_colors.dart';
 import '../../../core/constants/constant_sizes.dart';
 import '../../../core/utils/extensions/layout_adapter_ex.dart';
 import '../../../core/widgets/typography.dart';
-import '../../../models/process_item.dart';
+import '../../../models/process_item_model.dart';
 
-class ProcessCard extends StatelessWidget {
-  final ProcessItem item;
+class ProcessCard extends StatefulWidget {
+  final ProcessItemModel item;
   final int index;
 
   const ProcessCard({super.key, required this.item, required this.index});
 
   @override
+  State<ProcessCard> createState() => _ProcessCardState();
+}
+
+class _ProcessCardState extends State<ProcessCard> {
+  bool _isHovered = false;
+
+  @override
   Widget build(BuildContext context) {
-    final numberString = (index + 1).toString().padLeft(2, '0');
+    final String numberString = (widget.index + 1).toString().padLeft(2, '0');
+    final bool isMobile = context.isMobile;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: kGrey25,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: kBlack.withValues(alpha: 0.03),
-            blurRadius: 15,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Stack(
-        children: [
-          // Large Background Number (Top Right)
-          Positioned(
-            top: 10,
-            right: 20,
-            child: TitleLarge(
-              numberString,
-              color: kGrey200.withValues(alpha: 0.5),
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      cursor: SystemMouseCursors.click,
+      child: AnimatedContainer(
+        duration: 700.ms,
+        curve: Curves.easeOutCubic,
+        transform: Matrix4.diagonal3Values(
+          _isHovered ? 1.04 : 1.0,
+          _isHovered ? 1.04 : 1.0,
+          1.0,
+        ),
+        transformAlignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: kGrey25,
+          borderRadius: BorderRadius.circular(s20),
+          boxShadow: [
+            BoxShadow(
+              color: kBlack.withValues(alpha: _isHovered ? 0.08 : 0.04),
+              blurRadius: _isHovered ? 40 : 20,
+              offset: Offset(0, _isHovered ? 16 : 8),
             ),
-          ),
+          ],
+        ),
+        child: Stack(
+          children: [
+            // Background Number
+            Positioned(
+              top: s10,
+              right: s20,
+              child: Opacity(
+                opacity: 0.4,
+                child: TitleLarge(numberString, color: kGrey300),
+              ),
+            ),
 
-          // Content
-          Padding(
-            padding: EdgeInsets.all(context.adaptive(24, 32)),
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Icon Box
-                    Container(
-                      width: context.adaptive(s60, s70),
-                      height: context.adaptive(s60, s70),
-                      decoration: BoxDecoration(
-                        color: kWhite,
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color: kLightYellow.withValues(alpha: 0.1),
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
+            // Main Content
+            Padding(
+              padding: EdgeInsets.all(context.adaptive(s24, s32)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Icon Box
+                  Container(
+                        width: context.adaptive(s60, s70),
+                        height: context.adaptive(s60, s70),
+                        padding: const EdgeInsets.all(s16),
+                        decoration: BoxDecoration(
+                          color: kWhite,
+                          borderRadius: BorderRadius.circular(s18),
+                          boxShadow: [
+                            BoxShadow(
+                              color: kLightYellow.withValues(alpha: 0.18),
+                              blurRadius: 20,
+                              offset: const Offset(0, 8),
+                            ),
+                          ],
+                        ),
+                        child: Image.asset(
+                          widget.item.iconPath,
+                          fit: BoxFit.contain,
+                          color: kDeepOrange,
+                        ),
+                      )
+                      .animate(target: _isHovered ? 1 : 0)
+                      .scale(
+                        begin: const Offset(1.0, 1.0),
+                        end: const Offset(1.15, 1.15),
+                        curve: Curves.easeOutBack,
+                      )
+                      .shimmer(
+                        duration: 2800.ms,
+                        color: kDeepOrange.withValues(alpha: 0.1),
                       ),
-                      padding: const EdgeInsets.all(16),
-                      child: Image.asset(item.iconPath, fit: BoxFit.contain),
-                    ),
 
-                    SizedBox(height: context.adaptive(s24, s32)),
+                  SizedBox(height: context.adaptive(s24, s32)),
 
-                    // Title
-                    TitleSmall(
-                      item.title,
-                      color: kPrimary,
-                      textAlign: TextAlign.left,
-                    ),
+                  // Title
+                  TitleSmall(
+                    widget.item.title,
+                    color: kPrimary,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
 
-                    const SizedBox(height: 12),
+                  const SizedBox(height: s14),
 
-                    // Custom Separator
-                    Row(
-                      children: [
-                        Container(
-                          width: 25,
-                          height: 3,
-                          decoration: BoxDecoration(
-                            color: kDeepOrange,
-                            borderRadius: BorderRadius.circular(2),
-                          ),
+                  // Decorative Separator
+                  Row(
+                    children: [
+                      Container(
+                        width: s32,
+                        height: s4,
+                        decoration: BoxDecoration(
+                          color: kDeepOrange,
+                          borderRadius: BorderRadius.circular(s2),
                         ),
-                        const SizedBox(width: 4),
-                        Container(
-                          width: 5,
-                          height: 3,
-                          decoration: BoxDecoration(
-                            color: kDeepOrange,
-                            borderRadius: BorderRadius.circular(2),
-                          ),
+                      ),
+                      const SizedBox(width: s8),
+                      Container(
+                        width: s10,
+                        height: s4,
+                        decoration: BoxDecoration(
+                          color: kDeepOrange.withValues(alpha: 0.5),
+                          borderRadius: BorderRadius.circular(s2),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
+                  ),
 
-                    const SizedBox(height: 16),
+                  const SizedBox(height: s24),
 
-                    // Description
-                    BodyMedium(
-                      item.description,
-                      color: kGrey800,
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
-                );
-              },
+                  // Description
+                  BodyMedium(
+                    widget.item.description,
+                    color: kGrey700,
+                    maxLines: isMobile ? 4 : 5,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

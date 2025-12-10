@@ -28,15 +28,29 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   final ScrollController _scrollController = ScrollController();
+  JSFunction? _hashChangeHandler;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkHashFromUrl();
-      web.window.addEventListener('hashchange', _handleHashChange.toJS);
+
+      _hashChangeHandler = _handleHashChange.toJS;
+      web.window.addEventListener('hashchange', _hashChangeHandler!);
+
       AnalyticsService().logAppOpen();
     });
+  }
+
+  @override
+  void dispose() {
+    if (_hashChangeHandler != null) {
+      web.window.removeEventListener('hashchange', _hashChangeHandler!);
+    }
+
+    _scrollController.dispose();
+    super.dispose();
   }
 
   void _handleHashChange(web.Event _) => _checkHashFromUrl();
@@ -45,7 +59,9 @@ class _LandingPageState extends State<LandingPage> {
     final hash = web.window.location.hash
         .replaceFirst('#/', '')
         .replaceFirst('#', '');
+
     final section = hash.isEmpty ? 'home' : hash;
+
     if (sectionKeys.containsKey(section)) {
       Future.delayed(100.ms, () => _scrollTo(section));
     }
@@ -117,11 +133,5 @@ class _LandingPageState extends State<LandingPage> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 }

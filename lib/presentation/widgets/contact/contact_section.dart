@@ -1,4 +1,3 @@
-// lib/presentation/widgets/contact/contact_section.dart
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -6,9 +5,12 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/constant_colors.dart';
+import '../../../core/constants/constant_sizes.dart';
 import '../../../core/di/providers.dart';
 import '../../../core/services/analytics_service.dart';
-import '../../../core/utils/extensions/extensions.dart';
+import '../../../core/utils/extensions/context_ex.dart';
+import '../../../core/utils/extensions/layout_adapter_ex.dart';
+import '../../../core/utils/extensions/padding_ex.dart';
 import '../../../core/widgets/animated_fade_slide.dart';
 import '../../../core/widgets/buttons/glowing_button.dart';
 import '../../../core/widgets/custom_toast.dart';
@@ -26,48 +28,50 @@ class ContactSection extends StatelessWidget {
     return Container(
       padding: context.defaultPagePadding(),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section Title
+          // Caption
           AnimatedFadeSlide(
-            visibilityKey: 'section-title-contact-us',
-            delay: 200.ms,
-            beginY: 0.2,
+            visibilityKey: 'contact-caption',
+            delay: 100.ms,
             child: Caption(
               '\\  ${context.localization.section_title_contact_us} \\',
               color: kWhite,
             ),
           ),
 
-          SizedBox(height: context.adaptive(8, 12, md: 10)),
+          SizedBox(height: context.adaptive(s8, s16, md: s12)),
 
           // Main Title
           AnimatedFadeSlide(
-            visibilityKey: 'contact-us-main-title',
-            delay: 400.ms,
-            beginY: 0.2,
+            visibilityKey: 'contact-title',
+            delay: 300.ms,
             child: TitleSmall(
               context.localization.contact_us_main_title,
               textAlign: TextAlign.left,
+              color: kWhite,
             ),
           ),
-          SizedBox(height: context.adaptive(8, 12, md: 10)),
 
-          // Title Separator
+          SizedBox(height: context.adaptive(s8, s12, md: s10)),
+
+          // Separator
           AnimatedFadeSlide(
-            visibilityKey: 'contact-us-title-separator',
-            delay: 200.ms,
-            beginY: 0.2,
+            visibilityKey: 'contact-separator',
+            delay: 500.ms,
             child: const TitleSeparator(),
           ),
-          SizedBox(height: context.adaptive(40, 60)),
 
+          SizedBox(height: context.adaptive(s60, s100, md: s80)),
+
+          // Responsive Layout
           Center(
             child: context.isMobile
                 ? const _MobileLayout()
                 : const _DesktopLayout(),
           ),
+
+          SizedBox(height: context.adaptive(s80, s120)),
         ],
       ),
     );
@@ -76,52 +80,59 @@ class ContactSection extends StatelessWidget {
 
 class _MobileLayout extends StatelessWidget {
   const _MobileLayout();
+
   @override
-  Widget build(BuildContext context) => Column(
-    children: [
-      const _ContactForm(),
-      SizedBox(height: context.adaptive(80, 120)),
-      const ContactInfo(),
-      SizedBox(height: context.adaptive(60, 100)),
-      const SocialRow(),
-      SizedBox(height: context.adaptive(40, 80)),
-    ],
-  );
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const _ContactForm(),
+        SizedBox(height: context.adaptive(s80, s120)),
+        const ContactInfo(),
+        SizedBox(height: context.adaptive(s60, s100)),
+        const SocialRow(),
+        SizedBox(height: context.adaptive(s40, s80)),
+      ],
+    );
+  }
 }
 
 class _DesktopLayout extends StatelessWidget {
   const _DesktopLayout();
+
   @override
-  Widget build(BuildContext context) => Row(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Expanded(
-        flex: 6,
-        child: AnimatedFadeSlide(
-          visibilityKey: 'contact-form-desktop',
-          delay: 400.ms,
-          beginY: 0.3,
-          child: const _ContactForm(),
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 6,
+          child: AnimatedFadeSlide(
+            visibilityKey: 'contact-form-desktop',
+            delay: 400.ms,
+            beginY: 0.2,
+            child: const _ContactForm(),
+          ),
         ),
-      ),
-      SizedBox(width: context.adaptive(60, 100, xl: 140)),
-      Expanded(
-        flex: 5,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const ContactInfo(),
-            SizedBox(height: context.adaptive(80, 120)),
-            const SocialRow(),
-          ],
+        SizedBox(width: context.adaptive(s60, s100, xl: s140)),
+        Expanded(
+          flex: 5,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const ContactInfo(),
+              SizedBox(height: context.adaptive(s80, s120)),
+              const SocialRow(),
+            ],
+          ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }
 
 class _ContactForm extends ConsumerStatefulWidget {
   const _ContactForm();
+
   @override
   ConsumerState<_ContactForm> createState() => _ContactFormState();
 }
@@ -172,9 +183,8 @@ class _ContactFormState extends ConsumerState<_ContactForm> {
           context,
           message: context.localization.contact_message_sent_successful,
         );
-
         _formKey.currentState?.reset();
-        for (var c in [
+        for (final c in [
           _nameController,
           _emailController,
           _phoneController,
@@ -183,7 +193,6 @@ class _ContactFormState extends ConsumerState<_ContactForm> {
           c.clear();
         }
       }
-
       if (next.error != null) {
         CustomToast.instance.show(context, message: next.error!, isError: true);
       }
@@ -192,10 +201,9 @@ class _ContactFormState extends ConsumerState<_ContactForm> {
     return AnimatedFadeSlide(
       visibilityKey: 'contact-form',
       delay: 200.ms,
-      beginY: 0.3,
-      visibleFraction: 0.2,
+      beginY: 0.25,
       child: GlassCard(
-        padding: EdgeInsets.all(context.adaptive(32, 56)),
+        padding: EdgeInsets.all(context.adaptive(s32, s56)),
         child: Form(
           key: _formKey,
           child: Column(
@@ -204,25 +212,25 @@ class _ContactFormState extends ConsumerState<_ContactForm> {
                 context.localization.contact_your_name,
                 controller: _nameController,
               ),
-              SizedBox(height: context.adaptive(20, 28)),
+              SizedBox(height: context.adaptive(s20, s28)),
               _buildField(
                 context.localization.contact_email_address,
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
               ),
-              SizedBox(height: context.adaptive(20, 28)),
+              SizedBox(height: context.adaptive(s20, s28)),
               _buildField(
                 context.localization.contact_phone_number,
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
               ),
-              SizedBox(height: context.adaptive(20, 28)),
+              SizedBox(height: context.adaptive(s20, s28)),
               _buildField(
                 context.localization.contact_tell_about_prj,
                 controller: _messageController,
                 maxLines: 8,
               ),
-              SizedBox(height: context.adaptive(36, 56)),
+              SizedBox(height: context.adaptive(s40, s60)),
 
               GlowingButton(
                 text: viewModel.isLoading
@@ -231,10 +239,10 @@ class _ContactFormState extends ConsumerState<_ContactForm> {
                 onPressed: viewModel.isLoading ? null : _submitForm,
                 filled: true,
                 padding: EdgeInsets.symmetric(
-                  horizontal: context.adaptive(48, 72),
-                  vertical: context.adaptive(20, 26),
+                  horizontal: context.adaptive(s48, s70),
+                  vertical: context.adaptive(s20, s28),
                 ),
-                fontSize: context.adaptive(12, 16),
+                fontSize: context.adaptive(ts15, ts17),
               ),
             ],
           ),
@@ -245,7 +253,7 @@ class _ContactFormState extends ConsumerState<_ContactForm> {
 
   Widget _buildField(
     String hint, {
-    TextEditingController? controller,
+    required TextEditingController controller,
     int maxLines = 1,
     TextInputType? keyboardType,
   }) {
@@ -255,35 +263,35 @@ class _ContactFormState extends ConsumerState<_ContactForm> {
       keyboardType: keyboardType,
       style: TextStyle(
         color: kTextPrimary,
-        fontSize: context.adaptive(15, 18),
-        height: 1.5,
+        fontSize: context.adaptive(ts16, ts18),
+        height: 1.6,
       ),
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: TextStyle(
           color: kTextSecondary.withValues(alpha: 0.7),
-          fontSize: context.adaptive(15, 17),
+          fontSize: context.adaptive(ts15, ts17),
         ),
         filled: true,
         fillColor: kWhite.withValues(alpha: 0.08),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(context.adaptive(16, 20)),
+          borderRadius: BorderRadius.circular(context.adaptive(s16, s20)),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(context.adaptive(16, 20)),
+          borderRadius: BorderRadius.circular(context.adaptive(s16, s20)),
           borderSide: BorderSide(
             color: kAccentCyan.withValues(alpha: 0.6),
             width: 2,
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(context.adaptive(16, 20)),
+          borderRadius: BorderRadius.circular(context.adaptive(s16, s20)),
           borderSide: BorderSide(color: Colors.red.shade400, width: 1.5),
         ),
         contentPadding: EdgeInsets.symmetric(
-          horizontal: context.adaptive(24, 32),
-          vertical: context.adaptive(20, 24),
+          horizontal: context.adaptive(s24, s32),
+          vertical: context.adaptive(s20, s24),
         ),
       ),
       validator: (value) {

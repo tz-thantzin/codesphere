@@ -1,13 +1,15 @@
-// lib/presentation/widgets/our_service_section.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../core/constants/constant_colors.dart';
-import '../../../core/utils/extensions/extensions.dart';
+import '../../../core/constants/constant_sizes.dart';
+import '../../../core/utils/extensions/context_ex.dart';
+import '../../../core/utils/extensions/layout_adapter_ex.dart';
+import '../../../core/utils/extensions/padding_ex.dart';
 import '../../../core/widgets/animated_fade_slide.dart';
 import '../../../core/widgets/title_separator.dart';
 import '../../../core/widgets/typography.dart';
-import 'service_grid.dart';
+import 'services_grid.dart';
 
 class OurServiceSection extends StatelessWidget {
   const OurServiceSection({super.key});
@@ -16,44 +18,53 @@ class OurServiceSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: context.defaultPagePadding(),
+      width: double.infinity,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section Title
+          // Section Caption
           AnimatedFadeSlide(
-            visibilityKey: 'section-title-services',
-            delay: 200.ms,
-            beginY: 0.2,
+            visibilityKey: 'services-caption',
+            delay: 100.ms,
+            beginY: 0.15,
             child: Caption(
               '\\  ${context.localization.section_title_services} \\',
               color: kWhite,
             ),
           ),
 
-          SizedBox(height: context.adaptive(8, 12, md: 10)),
+          SizedBox(height: context.adaptive(s8, s16, md: s12)),
 
           // Main Title
           AnimatedFadeSlide(
-            visibilityKey: 'service-main-title',
-            delay: 400.ms,
+            visibilityKey: 'services-title',
+            delay: 300.ms,
             beginY: 0.2,
             child: TitleSmall(
               context.localization.service_main_title,
               textAlign: TextAlign.left,
+              color: kWhite,
             ),
           ),
-          SizedBox(height: context.adaptive(8, 12, md: 10)),
+
+          SizedBox(height: context.adaptive(s8, s12, md: s10)),
 
           // Title Separator
           AnimatedFadeSlide(
-            visibilityKey: 'planning-title-separator',
-            delay: 200.ms,
-            beginY: 0.2,
+            visibilityKey: 'services-separator',
+            delay: 500.ms,
+            beginY: 0.15,
             child: const TitleSeparator(),
           ),
-          SizedBox(height: context.adaptive(40, 60)),
-          ServicesGrid(),
+
+          // Spacing before grid
+          SizedBox(height: context.adaptive(s40, s80, md: s60)),
+
+          // Services Grid (with staggered entry)
+          const ServicesGrid()
+              .animate()
+              .fadeIn(duration: 600.ms, delay: 600.ms)
+              .slideY(begin: 0.1, curve: Curves.easeOutCubic),
         ],
       ),
     );

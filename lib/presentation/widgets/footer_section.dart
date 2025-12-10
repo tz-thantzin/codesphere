@@ -1,4 +1,3 @@
-// lib/presentation/widgets/footer_section.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -68,9 +67,9 @@ class _MobileLayout extends StatelessWidget {
     return const Column(
       children: [
         _Logo(),
-        SizedBox(height: 40),
+        SizedBox(height: s40),
         _ContactInfo(),
-        SizedBox(height: 32),
+        SizedBox(height: s32),
         _Copyright(),
       ],
     );
@@ -129,24 +128,19 @@ class _ContactInfo extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        TitleSmall(
           "Contact & Location",
-          style: TextStyle(
-            fontSize: context.adaptive(ts16, ts18),
-            fontWeight: FontWeight.w600,
-            color: kAccentCyan,
-            letterSpacing: 0.6,
-          ),
+          color: kAccentCyan,
         ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.3),
 
-        const SizedBox(height: 24),
+        const SizedBox(height: s24),
 
         const _ContactRow(
           icon: Icons.location_on_outlined,
           text: "Yangon, Myanmar & Bangkok, Thailand",
         ),
 
-        const SizedBox(height: 16),
+        const SizedBox(height: s16),
 
         _ContactRow(
           icon: Icons.phone_outlined,
@@ -183,31 +177,26 @@ class _ContactRowState extends State<_ContactRow> {
       child: GestureDetector(
         onTap: widget.onTap,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 7),
+          padding: const EdgeInsets.symmetric(vertical: s8),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                width: 28,
+                width: s28,
                 child: Icon(
                   widget.icon,
-                  size: 22,
+                  size: s22,
                   color: _hover ? kAccentCyan : kTextSecondary,
                 ),
               ),
 
-              const SizedBox(width: 10),
+              const SizedBox(width: s8),
 
               Flexible(
-                child: SelectableText(
+                child: BodyMedium(
                   widget.text,
-                  style: TextStyle(
-                    fontSize: context.adaptive(ts15, ts16),
-                    color: _hover ? kAccentCyan : kTextSecondary,
-                    fontWeight: FontWeight.w500,
-                    height: 1.4,
-                  ),
+                  color: _hover ? kAccentCyan : kTextSecondary,
                   maxLines: 2,
                 ),
               ),

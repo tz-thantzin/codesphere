@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-class ProcessItem extends Equatable {
+class ProcessItemModel extends Equatable {
   final String title;
   final String iconPath;
   final String description;
 
-  ProcessItem({
+  ProcessItemModel({
     required this.title,
     required this.iconPath,
     required this.description,
