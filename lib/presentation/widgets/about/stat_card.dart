@@ -1,7 +1,8 @@
-// lib/presentation/widgets/about/stat_card.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../core/constants/constant_colors.dart';
+import '../../../core/constants/constant_sizes.dart';
 import '../../../core/utils/extensions/layout_adapter_ex.dart';
 import '../../../core/widgets/glass_card.dart';
 import '../../../core/widgets/typography.dart';
@@ -17,91 +18,105 @@ class StatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassCard(
           padding: EdgeInsets.zero,
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              final width = constraints.maxWidth;
-              final numberFontSize = (width * 0.11).clamp(24.0, 48.0);
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: context.adaptive(18, 24, sm: 20, md: 24, xl: 26),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: context.adaptive(s20, s28),
+              horizontal: context.adaptive(s16, s24),
+            ),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final double maxWidth = constraints.maxWidth;
+                final double numberFontSize = (maxWidth * 0.10).clamp(s28, s40);
+
+                return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // BIG NUMBER
-                    Expanded(
-                      flex: 2,
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: stat.isNumeric
-                            ? AnimatedStatNumber(
-                                value: _parseNumericValue(stat),
-                                stat: stat,
-                                fontSize: numberFontSize,
-                              )
-                            : StaticStatNumber(
-                                text: stat.number,
-                                fontSize: numberFontSize,
-                              ),
-                      ),
+                    // Animated or Static Number
+                    Center(
+                      child: stat.isNumeric
+                          ? AnimatedStatNumber(
+                              targetValue: _parseValue(stat),
+                              suffix: _getSuffix(stat),
+                              fontSize: numberFontSize,
+                            )
+                          : StaticStatNumber(
+                              text: stat.number,
+                              fontSize: numberFontSize,
+                            ),
                     ),
 
-                    // LABEL
-                    Expanded(
-                      child: BodyMedium(
-                        stat.label,
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                      ),
+                    SizedBox(height: context.adaptive(s8, s12)),
+
+                    // Label
+                    BodyMedium(
+                      stat.label,
+                      textAlign: TextAlign.center,
+                      color: kGrey300,
+                      fontWeight: FontWeight.w500,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         )
         .animate()
         .fadeIn(duration: 800.ms, delay: delay)
-        .slideY(begin: 0.35, curve: Curves.easeOutCubic);
+        .slideY(begin: 0.3, end: 0.0, curve: Curves.easeOutCubic)
+        .scale(
+          begin: Offset(0.9, 0.9),
+          end: Offset(1.0, 1.0),
+          curve: Curves.easeOutBack,
+        );
   }
 
-  double _parseNumericValue(StatModel stat) {
-    return double.tryParse(stat.number.replaceAll(RegExp(r'[^0-9]'), '')) ?? 0;
+  double _parseValue(StatModel stat) {
+    final cleaned = stat.number.replaceAll(RegExp(r'[^0-9.]'), '');
+    return double.tryParse(cleaned) ?? 0.0;
+  }
+
+  String _getSuffix(StatModel stat) {
+    if (stat.number.contains('%')) return '%';
+    if (stat.number.contains('+')) return '+';
+    if (stat.number.contains('K')) return 'K';
+    if (stat.number.contains('M')) return '';
+    return '';
   }
 }
 
 class AnimatedStatNumber extends StatelessWidget {
-  final double value;
-  final StatModel stat;
+  final double targetValue;
+  final String suffix;
   final double fontSize;
 
   const AnimatedStatNumber({
     super.key,
-    required this.value,
-    required this.stat,
+    required this.targetValue,
+    required this.suffix,
     required this.fontSize,
   });
 
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(
-      tween: Tween(begin: 0.0, end: value),
-      duration: 2400.ms,
+      tween: Tween(begin: 0.0, end: targetValue),
+      duration: 2600.ms,
       curve: Curves.easeOutExpo,
-      builder: (context, val, _) {
+      builder: (context, value, _) {
+        final displayValue = value.toInt();
         return GradientText(
-          _formatNumber(val.toInt(), stat),
+          '$displayValue$suffix',
           fontSize: fontSize,
-          letterSpacing: 1,
+          fontWeight: FontWeight.w800,
+          letterSpacing: -1.0,
         );
       },
     );
   }
 }
 
-// static number with gradient
 class StaticStatNumber extends StatelessWidget {
   final String text;
   final double fontSize;
@@ -114,14 +129,11 @@ class StaticStatNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GradientText(text, fontSize: fontSize, letterSpacing: -1.5);
+    return GradientText(
+      text,
+      fontSize: fontSize,
+      fontWeight: FontWeight.w800,
+      letterSpacing: -1.5,
+    );
   }
-}
-
-String _formatNumber(int value, StatModel stat) {
-  if (stat.number.contains('%')) return '$value%';
-  if (stat.number.contains('+')) return '$value+';
-  if (stat.number.contains('K')) return '${value}K';
-  if (stat.number.contains('M')) return '${value}M';
-  return value.toString();
 }

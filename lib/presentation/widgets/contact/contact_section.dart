@@ -200,7 +200,7 @@ class _ContactFormState extends ConsumerState<_ContactForm> {
 
     return AnimatedFadeSlide(
       visibilityKey: 'contact-form',
-      delay: 200.ms,
+      delay: 100.ms,
       beginY: 0.25,
       child: GlassCard(
         padding: EdgeInsets.all(context.adaptive(s32, s56)),

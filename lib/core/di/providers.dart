@@ -1,4 +1,3 @@
-// lib/core/di/providers.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/data_sources/contact_datasource.dart';
@@ -7,6 +6,7 @@ import '../../domain/repositories/contact_repository.dart';
 import '../../domain/usecases/contact_message.dart';
 import '../../presentation/viewmodels/contact_viewmodel.dart';
 import '../services/analytics_service.dart';
+import '../state/contact_state.dart';
 
 final analyticsProvider = Provider<AnalyticsService>(
   (ref) => AnalyticsService(),
