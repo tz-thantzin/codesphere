@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart' as fb;
 import 'package:logger/logger.dart';
 
 import '../../domain/repositories/contact_repository.dart';
-import '../../models/contact.dart';
+import '../../models/contact_model.dart';
 import '../data_sources/contact_datasource.dart';
 
 class ContactRepositoryImpl implements ContactRepository {
@@ -13,7 +13,7 @@ class ContactRepositoryImpl implements ContactRepository {
   final Logger _logger = Logger();
 
   @override
-  Future<void> sendMessage(Contact contact) async {
+  Future<void> sendMessage(ContactModel contact) async {
     try {
       await _datasource.sendMessage(contact);
     } on fb.FirebaseException catch (e) {

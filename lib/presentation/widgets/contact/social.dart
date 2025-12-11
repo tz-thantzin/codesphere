@@ -1,4 +1,3 @@
-//lib/presentation/widgets/contact/social.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,8 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants/constant_colors.dart';
 import '../../../core/constants/constant_data.dart';
+import '../../../core/constants/constant_sizes.dart';
 import '../../../core/widgets/animated_fade_slide.dart';
-import '../../../models/social_link.dart';
+import '../../../models/social_link_model.dart';
 
 class SocialRow extends StatelessWidget {
   const SocialRow({super.key});
@@ -18,8 +18,8 @@ class SocialRow extends StatelessWidget {
       visibilityKey: 'social-row',
       delay: 600.ms,
       child: Wrap(
-        spacing: 20,
-        runSpacing: 20,
+        spacing: s32,
+        runSpacing: s24,
         alignment: WrapAlignment.center,
         children: socialLinks
             .map((link) => _SocialButton(social: link))
@@ -30,7 +30,7 @@ class SocialRow extends StatelessWidget {
 }
 
 class _SocialButton extends StatefulWidget {
-  final SocialLink social;
+  final SocialLinkModel social;
   const _SocialButton({required this.social});
 
   @override
@@ -54,16 +54,16 @@ class _SocialButtonState extends State<_SocialButton> {
             AnimatedContainer(
                   duration: 300.ms,
                   curve: Curves.easeOutCubic,
-                  padding: const EdgeInsets.all(18),
+                  padding: const EdgeInsets.all(s20),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: _hover ? hoverColor : kWhite24,
-                      width: 2,
+                      width: s2,
                     ),
                     color: _hover
                         ? hoverColor.withValues(alpha: 0.12)
-                        : kTransparent,
+                        : Colors.transparent,
                     boxShadow: _hover
                         ? [
                             BoxShadow(
@@ -75,20 +75,16 @@ class _SocialButtonState extends State<_SocialButton> {
                   ),
                   child: FaIcon(
                     widget.social.icon,
-                    size: 26,
+                    size: s28,
                     color: _hover ? hoverColor : kTextSecondary,
                   ),
                 )
                 .animate(target: _hover ? 1 : 0)
                 .scale(
-                  begin: const Offset(1.0, 1.0),
-                  end: const Offset(1.25, 1.25),
+                  begin: Offset(1.0, 1.0),
+                  end: Offset(1.25, 1.25),
                   duration: 300.ms,
                   curve: Curves.easeOutBack,
-                )
-                .shimmer(
-                  duration: 2000.ms,
-                  color: hoverColor.withValues(alpha: 0.3),
                 ),
       ),
     );

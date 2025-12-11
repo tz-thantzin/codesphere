@@ -1,4 +1,3 @@
-// lib/presentation/widgets/hero_section.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -52,7 +51,7 @@ class HeroSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _HeroTextContent(onBuildTeam: onViewWork, isMobile: true),
-                const SizedBox(height: 64),
+                const SizedBox(height: s64),
                 _HeroImage(isMobile: true),
               ],
             ),
@@ -88,8 +87,7 @@ class _HeroTextContent extends StatelessWidget {
           child: TitleLarge(headline, textAlign: textAlign),
         ),
 
-        SizedBox(height: isMobile ? 16 : 24),
-
+        SizedBox(height: isMobile ? s16 : s24),
         AnimatedFadeSlide(
           visibilityKey: 'hero-subtitle',
           delay: 500.ms,
@@ -97,14 +95,13 @@ class _HeroTextContent extends StatelessWidget {
           visibleFraction: 0.1,
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              maxWidth: isMobile ? 400 : double.infinity,
+              maxWidth: isMobile ? context.screenWidth * 0.8 : double.infinity,
             ),
             child: BodyMedium(body, textAlign: textAlign),
           ),
         ),
 
-        SizedBox(height: isMobile ? 32 : 48),
-
+        SizedBox(height: isMobile ? s32 : s48),
         AnimatedFadeSlide(
           visibilityKey: 'hero-button',
           delay: 800.ms,
@@ -158,7 +155,7 @@ class _HeroImage extends StatelessWidget {
             width: width,
             height: height,
             decoration: BoxDecoration(
-              border: Border.all(color: kWhite, width: 1),
+              border: Border.all(color: kWhite, width: s1),
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(s14),
                 bottomLeft: Radius.circular(s32),

@@ -1,10 +1,9 @@
-// lib/presentation/widgets/not_found_section.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../core/constants/constant_colors.dart';
 import '../../core/constants/constant_images.dart';
+import '../../core/constants/constant_sizes.dart';
 import '../../core/utils/extensions/extensions.dart';
 import '../../core/widgets/animated_fade_slide.dart';
 import '../../core/widgets/buttons/glowing_button.dart';
@@ -25,7 +24,7 @@ class NotFoundSection extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           constraints: BoxConstraints(minHeight: context.screenHeight),
-          padding: const EdgeInsets.symmetric(horizontal: 32),
+          padding: context.defaultPagePadding(),
           child: isMobile
               ? _buildMobileLayout(context)
               : _buildDesktopLayout(context),
@@ -34,7 +33,7 @@ class NotFoundSection extends StatelessWidget {
     );
   }
 
-  // ====================== Mobile Layout ======================
+  // Mobile Layout
   Widget _buildMobileLayout(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: context.appBarHeight),
@@ -53,8 +52,7 @@ class NotFoundSection extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 32),
-
+          const SizedBox(height: s32),
           AnimatedFadeSlide(
             visibilityKey: 'not-found-subtitle',
             delay: 500.ms,
@@ -66,7 +64,7 @@ class NotFoundSection extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 32),
+          const SizedBox(height: s32),
           AnimatedFadeSlide(
             visibilityKey: 'not-found-image',
             delay: 300.ms,
@@ -80,7 +78,7 @@ class NotFoundSection extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 48),
+          const SizedBox(height: s48),
           AnimatedFadeSlide(
             visibilityKey: 'not-found-description',
             delay: 700.ms,
@@ -92,8 +90,7 @@ class NotFoundSection extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 80),
-
+          const SizedBox(height: s80),
           AnimatedFadeSlide(
             visibilityKey: 'not-found-button',
             delay: 900.ms,
@@ -104,19 +101,19 @@ class NotFoundSection extends StatelessWidget {
               onPressed: onGoHome,
               filled: true,
               padding: EdgeInsets.symmetric(
-                horizontal: context.isMobile ? 32 : 40,
-                vertical: context.isMobile ? 16 : 20,
+                horizontal: context.isMobile ? s32 : s40,
+                vertical: context.isMobile ? s16 : s20,
               ),
             ),
           ),
 
-          const SizedBox(height: 48),
+          const SizedBox(height: s48),
         ],
       ),
     );
   }
 
-  // ====================== Desktop & Tablet Layout ======================
+  // Desktop Layout
   Widget _buildDesktopLayout(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -138,15 +135,14 @@ class NotFoundSection extends StatelessWidget {
                       '404',
                       style: TextStyle(
                         color: kGrey200.withValues(alpha: 0.9),
-                        fontSize: 180,
+                        fontSize: ts180,
                         letterSpacing: 8,
                         height: 0.9,
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 32),
-
+                  const SizedBox(height: s32),
                   AnimatedFadeSlide(
                     visibilityKey: 'not-found-subtitle',
                     delay: 500.ms,
@@ -158,7 +154,7 @@ class NotFoundSection extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 32),
+                  const SizedBox(height: s32),
 
                   AnimatedFadeSlide(
                     visibilityKey: 'not-found-description',
@@ -173,8 +169,7 @@ class NotFoundSection extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 32),
-
+                  const SizedBox(height: s32),
                   AnimatedFadeSlide(
                     visibilityKey: 'not-found-button',
                     delay: 900.ms,
@@ -191,8 +186,7 @@ class NotFoundSection extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(width: 80),
-
+            const SizedBox(width: s80),
             // Right side – Image
             AnimatedFadeSlide(
               visibilityKey: 'not-found-image',

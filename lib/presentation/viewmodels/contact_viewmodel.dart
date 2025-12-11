@@ -1,34 +1,10 @@
-// lib/presentation/viewmodels/contact_viewmodel.dart
-import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/di/providers.dart';
 import '../../core/services/analytics_service.dart';
+import '../../core/state/contact_state.dart';
 import '../../domain/usecases/contact_message.dart';
-import '../../models/contact.dart';
-
-class ContactState extends Equatable {
-  final bool isLoading;
-  final String? error;
-  final bool isSuccess;
-
-  const ContactState({
-    this.isLoading = false,
-    this.error,
-    this.isSuccess = false,
-  });
-
-  ContactState copyWith({bool? isLoading, String? error, bool? isSuccess}) {
-    return ContactState(
-      isLoading: isLoading ?? this.isLoading,
-      error: error,
-      isSuccess: isSuccess ?? this.isSuccess,
-    );
-  }
-
-  @override
-  List<Object?> get props => [isLoading, error, isSuccess];
-}
+import '../../models/contact_model.dart';
 
 class ContactViewModel extends Notifier<ContactState> {
   late final ContactMessage contactMessage;
@@ -55,7 +31,7 @@ class ContactViewModel extends Notifier<ContactState> {
     state = state.copyWith(isLoading: true, error: null);
 
     try {
-      final contact = Contact(
+      final contact = ContactModel(
         name: name,
         email: email,
         phone: phone,

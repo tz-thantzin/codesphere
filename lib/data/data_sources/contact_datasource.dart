@@ -2,7 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logger/logger.dart';
 
-import '../../models/contact.dart';
+import '../../models/contact_model.dart';
 
 class ContactDatasource {
   final FirebaseFirestore _firestore;
@@ -11,7 +11,7 @@ class ContactDatasource {
   ContactDatasource({FirebaseFirestore? firestore})
     : _firestore = firestore ?? FirebaseFirestore.instance;
 
-  Future<void> sendMessage(Contact contact) async {
+  Future<void> sendMessage(ContactModel contact) async {
     try {
       await _firestore
           .collection("message")

@@ -4,7 +4,7 @@ import '../../constants/constant_sizes.dart';
 import 'layout_adapter_ex.dart';
 
 extension PaddingEX on BuildContext {
-  EdgeInsetsGeometry defaultPagePadding({bool isFooter = false}) {
+  EdgeInsetsGeometry defaultPagePadding() {
     final bool isDesktop = this.isDesktop;
     final double padding = isDesktop ? s64 : s32;
     return EdgeInsets.symmetric(

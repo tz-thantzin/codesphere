@@ -150,13 +150,13 @@ abstract class AppLocalizations {
   /// No description provided for @about_us_sub_title.
   ///
   /// In en, this message translates to:
-  /// **'Crafting the Future of Mobile,\nOne App at a Time'**
+  /// **'Crafting the Future of Mobile, One App at a Time'**
   String get about_us_sub_title;
 
   /// No description provided for @about_us_sub_description.
   ///
   /// In en, this message translates to:
-  /// **'At CodeSphere, we don’t just build apps — we architect digital experiences\nthat scale, perform, and delight. With experience in Flutter, Swift, Kotlin\nand modern UI engineering, we deliver reliable and beautiful solutions.'**
+  /// **'At CodeSphere, we don’t just build apps — we architect digital experiences that scale, perform, and delight. With experience in Flutter, Swift, Kotlin and modern UI engineering, we deliver reliable and beautiful solutions.'**
   String get about_us_sub_description;
 
   /// No description provided for @about_us_highlights.

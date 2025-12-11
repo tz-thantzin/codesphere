@@ -1,13 +1,13 @@
-// lib/models/contact.dart
+// lib/models/contact_model.dart
 import 'package:equatable/equatable.dart';
 
-class Contact extends Equatable {
+class ContactModel extends Equatable {
   final String name;
   final String email;
   final String phone;
   final String message;
 
-  const Contact({
+  const ContactModel({
     required this.name,
     required this.email,
     required this.phone,

@@ -8,13 +8,13 @@ import '../../../core/widgets/typography.dart';
 
 class ServiceCard extends StatefulWidget {
   final String title;
-  final String desc;
+  final String description;
   final IconData icon;
 
   const ServiceCard({
     super.key,
     required this.title,
-    required this.desc,
+    required this.description,
     required this.icon,
   });
 
@@ -23,123 +23,112 @@ class ServiceCard extends StatefulWidget {
 }
 
 class _ServiceCardState extends State<ServiceCard> {
-  bool _hovered = false;
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
-    final double iconSize = context.adaptive(s30, s40);
+    final bool isMobile = context.isMobile;
+    final double iconBoxSize = context.adaptive(s60, s80);
+    final double iconSize = context.adaptive(s32, s48);
 
     return MouseRegion(
-      onEnter: (_) => setState(() => _hovered = true),
-      onExit: (_) => setState(() => _hovered = false),
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
       cursor: SystemMouseCursors.click,
       child: AnimatedContainer(
         duration: 600.ms,
         curve: Curves.easeOutCubic,
         transform: Matrix4.diagonal3Values(
-          _hovered ? 1.03 : 1.0,
-          _hovered ? 1.03 : 1.0,
+          _isHovered ? 1.04 : 1.0,
+          _isHovered ? 1.04 : 1.0,
           1.0,
         ),
         transformAlignment: Alignment.center,
-
+        padding: EdgeInsets.all(context.adaptive(s24, s32)),
         decoration: BoxDecoration(
           color: kGrey25,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(s20),
           boxShadow: [
             BoxShadow(
-              color: kBlack.withValues(alpha: 0.03),
-              blurRadius: 15,
-              offset: const Offset(0, 5),
+              color: kBlack.withValues(alpha: 0.04),
+              blurRadius: _isHovered ? 32 : 20,
+              offset: Offset(0, _isHovered ? 12 : 8),
             ),
           ],
         ),
-        clipBehavior: Clip.antiAlias,
-        padding: EdgeInsets.all(context.adaptive(s24, s32)),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Icon Container
+            Container(
+                  width: iconBoxSize,
+                  height: iconBoxSize,
+                  padding: const EdgeInsets.all(s16),
+                  decoration: BoxDecoration(
+                    color: kWhite,
+                    borderRadius: BorderRadius.circular(s16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: kLightYellow.withValues(alpha: 0.15),
+                        blurRadius: 16,
+                        offset: const Offset(0, 6),
+                      ),
+                    ],
+                  ),
+                  child: Icon(widget.icon, size: iconSize, color: kDeepOrange),
+                )
+                .animate(target: _isHovered ? 1 : 0)
+                .shimmer(
+                  duration: 2400.ms,
+                  color: kDeepOrange.withValues(alpha: 0.15),
+                )
+                .scaleXY(begin: 1.0, end: 1.12, curve: Curves.easeOutBack),
+
+            SizedBox(height: context.adaptive(s24, s32)),
+
+            // Title
+            TitleSmall(
+              widget.title,
+              color: kPrimary,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+
+            const SizedBox(height: s12),
+
+            // Decorative Separator
+            Row(
               children: [
-                // ICON BOX
                 Container(
-                      width: context.adaptive(s60, s70),
-                      height: context.adaptive(s60, s70),
-                      decoration: BoxDecoration(
-                        color: kWhite,
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color: kLightYellow.withValues(alpha: 0.1),
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      padding: const EdgeInsets.all(16),
-                      child: Icon(
-                        widget.icon,
-                        size: iconSize,
-                        color: kDeepOrange,
-                      ),
-                    )
-                    .animate(target: _hovered ? 1 : 0)
-                    .shimmer(duration: 2200.ms)
-                    .scale(
-                      begin: const Offset(1.0, 1.0),
-                      end: const Offset(1.05, 1.05),
-                      curve: Curves.easeOutBack,
-                      duration: 600.ms,
-                    ),
-
-                SizedBox(height: context.adaptive(s24, s32)),
-
-                // TITLE
-                TitleSmall(
-                  widget.title,
-                  color: kPrimary,
-                  textAlign: TextAlign.left,
-                  maxLines: 2,
+                  width: s28,
+                  height: s4,
+                  decoration: BoxDecoration(
+                    color: kDeepOrange,
+                    borderRadius: BorderRadius.circular(s2),
+                  ),
                 ),
-
-                const SizedBox(height: 12),
-
-                // Custom Separator
-                Row(
-                  children: [
-                    Container(
-                      width: 25,
-                      height: 3,
-                      decoration: BoxDecoration(
-                        color: kDeepOrange,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    Container(
-                      width: 5,
-                      height: 3,
-                      decoration: BoxDecoration(
-                        color: kDeepOrange,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 16),
-
-                // DESCRIPTION
-                BodyMedium(
-                  widget.desc,
-                  color: kGrey800,
-                  textAlign: TextAlign.left,
-                  maxLines: 4,
+                const SizedBox(width: s6),
+                Container(
+                  width: s8,
+                  height: s4,
+                  decoration: BoxDecoration(
+                    color: kDeepOrange.withValues(alpha: 0.6),
+                    borderRadius: BorderRadius.circular(s2),
+                  ),
                 ),
               ],
-            );
-          },
+            ),
+
+            const SizedBox(height: s20),
+
+            // Description
+            BodyMedium(
+              widget.description,
+              color: kGrey700,
+              maxLines: isMobile ? 3 : 4,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
         ),
       ),
     );

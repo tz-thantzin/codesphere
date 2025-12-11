@@ -1,4 +1,3 @@
-// lib/presentation/widgets/contact/contact_info.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,7 +5,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants/constant_colors.dart';
 import '../../../core/constants/constant_data.dart';
-import '../../../core/utils/extensions/extensions.dart';
+import '../../../core/constants/constant_sizes.dart';
+import '../../../core/utils/extensions/context_ex.dart';
+import '../../../core/utils/extensions/layout_adapter_ex.dart';
+import '../../../core/utils/extensions/text_style_ex.dart';
 import '../../../core/widgets/animated_fade_slide.dart';
 import '../../../core/widgets/typography.dart';
 
@@ -15,8 +17,7 @@ class ContactInfo extends StatelessWidget {
 
   Future<void> _open(String url) async {
     final uri = Uri.parse(url);
-    final canLaunch = await canLaunchUrl(uri);
-    if (canLaunch) {
+    if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
   }
@@ -26,39 +27,44 @@ class ContactInfo extends StatelessWidget {
     return AnimatedFadeSlide(
       visibilityKey: 'contact-info',
       delay: 400.ms,
-      beginY: 0.3,
+      beginY: 0.25,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title
+          // Subtitle
           SubtitleMedium(
             context.localization.contact_us_main_subtitle,
             color: kTextPrimary,
           ),
 
-          SizedBox(height: context.adaptive(32, 48, md: 40)),
+          SizedBox(height: context.adaptive(s32, s48, md: s40)),
 
-          // Contact Rows
+          // Email
           _ContactRow(
             icon: FontAwesomeIcons.envelope,
             text: kEmail,
             color: kAccentCyan,
             onTap: () => _open("mailto:$kEmail"),
           ),
-          SizedBox(height: context.adaptive(16, 24, md: 20)),
+          SizedBox(height: context.adaptive(s16, s24, md: s20)),
+
+          // Viber
           _ContactRow(
             icon: FontAwesomeIcons.viber,
             text: kPhoneViber,
             color: kViber,
-            onTap: () => _open("viber://chat?number=$kPhoneViber"),
+            onTap: () =>
+                _open("viber://chat?number=${kPhoneViber.replaceAll(' ', '')}"),
           ),
-          SizedBox(height: context.adaptive(16, 24, md: 20)),
+          SizedBox(height: context.adaptive(s16, s24, md: s20)),
+
+          // WhatsApp
           _ContactRow(
             icon: FontAwesomeIcons.whatsapp,
             text: kPhoneWhatsApp,
             color: kWhatsApp,
             onTap: () => _open(
-              "https://wa.me/${kPhoneWhatsApp.replaceAll('+', '').replaceAll(' ', '')}",
+              "https://wa.me/${kPhoneWhatsApp.replaceAll(RegExp(r'[+\s]'), '')}",
             ),
           ),
         ],
@@ -85,85 +91,86 @@ class _ContactRow extends StatefulWidget {
 }
 
 class _ContactRowState extends State<_ContactRow> {
-  bool _hover = false;
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
-    final accent = widget.color ?? kAccentCyan;
+    final Color accent = widget.color ?? kAccentCyan;
 
     return MouseRegion(
-          onEnter: (_) => setState(() => _hover = true),
-          onExit: (_) => setState(() => _hover = false),
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            onTap: widget.onTap,
-            child: AnimatedContainer(
-              duration: 350.ms,
-              curve: Curves.easeOutCubic,
-              padding: EdgeInsets.symmetric(
-                horizontal: context.adaptive(20, 32, md: 28, xl: 40),
-                vertical: context.adaptive(16, 20, md: 18, xl: 24),
-              ),
-              decoration: BoxDecoration(
-                color: _hover
-                    ? accent.withValues(alpha: 0.15)
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(context.adaptive(16, 20)),
-                border: Border.all(
-                  color: _hover ? accent : kWhite24,
-                  width: _hover ? 1.5 : 1.0,
-                ),
-                boxShadow: _hover
-                    ? [
-                        BoxShadow(
-                          color: accent.withValues(alpha: 0.2),
-                          blurRadius: 20,
-                          offset: const Offset(0, 8),
-                        ),
-                      ]
-                    : null,
-              ),
-              child: Row(
-                children: [
-                  // Icon
-                  FaIcon(
-                    widget.icon,
-                    size: context.adaptive(24, 32, md: 28, xl: 36),
-                    color: _hover ? accent : kTextSecondary,
-                  ),
-
-                  SizedBox(width: context.adaptive(16, 24, md: 20)),
-
-                  // Text
-                  Expanded(
-                    child:
-                        BodyLarge(
-                          widget.text,
-                          color: _hover ? kTextPrimary : kTextSecondary,
-                        ).copyWithStyle(
-                          fontWeight: _hover ? semiBold : medium,
-                          height: 1.4,
-                        ),
-                  ),
-
-                  // Arrow
-                  AnimatedRotation(
-                    turns: _hover ? 0.05 : 0,
-                    duration: 300.ms,
-                    child: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: context.adaptive(16, 22, md: 18, xl: 24),
-                      color: _hover
-                          ? accent
-                          : kTextSecondary.withValues(alpha: 0.7),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: 400.ms,
+          curve: Curves.easeOutCubic,
+          padding: EdgeInsets.symmetric(
+            horizontal: context.adaptive(s24, s40),
+            vertical: context.adaptive(s18, s24),
           ),
-        )
-        .animate(target: _hover ? 1 : 0)
-        .scale(begin: const Offset(0.98, 0.98), curve: Curves.easeOutCubic);
+          decoration: BoxDecoration(
+            color: _isHovered
+                ? accent.withValues(alpha: 0.15)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(context.adaptive(s16, s20)),
+            border: Border.all(
+              color: _isHovered ? accent : kWhite.withValues(alpha: 0.24),
+              width: _isHovered ? 1.8 : 1.2,
+            ),
+            boxShadow: _isHovered
+                ? [
+                    BoxShadow(
+                      color: accent.withValues(alpha: 0.25),
+                      blurRadius: 24,
+                      offset: const Offset(0, 10),
+                    ),
+                  ]
+                : null,
+          ),
+          child: Row(
+            children: [
+              // Icon
+              FaIcon(
+                widget.icon,
+                size: context.adaptive(s28, s36),
+                color: _isHovered ? accent : kTextSecondary,
+              ),
+
+              SizedBox(width: context.adaptive(s20, s28)),
+
+              // Text
+              Expanded(
+                child:
+                    BodyLarge(
+                      widget.text,
+                      color: _isHovered ? kTextPrimary : kTextSecondary,
+                    ).copyWithStyle(
+                      fontWeight: _isHovered
+                          ? FontWeight.w600
+                          : FontWeight.w500,
+                      height: 1.5,
+                    ),
+              ),
+
+              // Arrow
+              AnimatedRotation(
+                turns: _isHovered ? 0.08 : 0,
+                duration: 350.ms,
+                curve: Curves.easeOutCubic,
+                child: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: context.adaptive(s18, s24),
+                  color: _isHovered
+                      ? accent
+                      : kTextSecondary.withValues(alpha: 0.7),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
